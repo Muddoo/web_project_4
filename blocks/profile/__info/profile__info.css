@@ -1,0 +1,16 @@
+.profile__info {
+    position: relative;
+    min-width: 428px;
+    min-height: 77px;
+    align-self: start;
+    margin-top: 18px;
+}
+
+@media only screen and (max-width: 770px) {
+    .profile__info {
+        min-width: 280px;
+        min-height: 66px;
+        align-self: center;
+        margin: 0;
+    }
+}

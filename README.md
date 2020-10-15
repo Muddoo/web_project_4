@@ -1,16 +1,53 @@
 # Project 4: Around The U.S.
 
 ### Overview
-
+* Intro
 * Figma
 * Images
 
-**Figma**
+### [Click To View](https://muddoo.github.io/web_project_3/)
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+**Intro**
 
-**Images**
+This is a project about traveling across the US. We've made it so all the elements are displayed correctly on popular screen sizes..
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+## Description
 
-Have fun with JavaScript!
+Creating modern webpage using html & css & js that fit all screen sizes desktop tablet and phones.
+
+
+## Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+* [Tests](#tests)
+* [Question](#question)
+                 
+## Installation
+
+TextEditor Like Vscode.
+                
+## Usage
+
+designed for user interface.
+
+## Credits
+ 
+animation, transform, BEM, flex, grid, hover, eventlisteners etc 
+
+## License
+
+MIT License 
+                
+## Tests
+
+![badge](https://img.shields.io/badge/License-MIT-yellowgreen)
+![badge](https://img.shields.io/badge/dependencies-upto%20date-ff69b4)
+![badge](https://img.shields.io/badge/Version-v1.0.0-blue)
+
+## Question
+
+![github photo](https://avatars2.githubusercontent.com/u/58055188?v=4)                  
+zoddoo@yahoo.com

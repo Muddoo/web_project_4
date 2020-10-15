@@ -1,0 +1,7 @@
+.card__details {
+    width: 246px;
+    height: 23px;
+    color: var(--dark);
+    display: flex;
+    justify-content: space-between;
+}

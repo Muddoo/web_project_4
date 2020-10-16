@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 4</title>
     <link rel="stylesheet" href="./pages/index.css">
+    <script src="./pages/index.js" defer></script>
 </head>
 <body class="page">
     <header class="header">
@@ -74,8 +75,8 @@
             <form action="" class="overlay__box">
                 <img src="./images/Close Icon.svg" alt="close icon" class="overlay__icon">
                 <p class="overlay__header">Edit profile</p>
-                <input type="text" class="overlay__name" placeholder="Name" name="Name" id="name" autocomplete="off">
-                <input type="text" class="overlay__about" placeholder="About me" name="About" id="about" autocomplete="off">
+                <input type="text" class="overlay__name" placeholder="Name" name="Name" id="name" autocomplete="off" required>
+                <input type="text" class="overlay__about" placeholder="About me" name="About" id="about" autocomplete="off" required>
                 <button type="submit" class="overlay__button" id="submit">Save</button>
             </form>
         </section>

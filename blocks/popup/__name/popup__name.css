@@ -1,6 +1,5 @@
-.overlay__name {
+.popup__name {
     width: 358px;
-    height: 27.26px;
     margin-left: 36px;
     margin-bottom: 29.74px;
     border: none;
@@ -10,13 +9,15 @@
     line-height: 17px;
     color: black;
     box-sizing: border-box;
+    padding-top: 0;
+    padding-bottom: calc(27.26px - 16.66px - 1px);
 }
 
 @media only screen and (max-width: 570px) {
-    .overlay__name {
+    .popup__name {
         display: block;
         width: 238px;
-        height: 27px;
         margin: 0 auto 30px;
+        padding-bottom: calc(27px - 16.66px - 1px);
     }
 }

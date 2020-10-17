@@ -1,7 +1,4 @@
 .profile__name {
-    position: absolute;
-    top: 0;
-    left: 0;
     font-weight: 500;
     font-size: 42px;
     line-height: 56px;
@@ -16,9 +13,9 @@
 @media only screen and (max-width: 770px) {
     .profile__name {
         width: 80%;
-        left: 50%;
-        transform: translateX(-50%);
+        flex-grow: 1;
         text-align: center;
         font-size: 22px;
+        padding-left: 18px;
     }
 }

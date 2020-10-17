@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 4</title>
+    <title>Around U.S.</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script src="./pages/index.js" defer></script>
 </head>
 <body class="page">
     <header class="header">
@@ -15,14 +14,14 @@
         <section class="profile">
             <img src="./images/image.jpg" alt="profile image" class="profile__image">
             <div class="profile__info">
-                <p class="profile__name">Jacques Cousteau</p>
+                <h1 class="profile__name">Jacques Cousteau</h1>
                 <p class="profile__text">Explorer</p>
-                <button class="profile__edit-button">
-                    <img src="./images/Vectoredit.png" alt="edit icon" class="profile__edit-icon">
+                <button class="profile__edit-button" aria-label="edit-button">
+                    <img src="./images/edit-icon.svg" alt="edit icon" class="profile__edit-icon">
                 </button>
             </div>
-            <button class="profile__add-button">
-                <img src="./images/Vectorplus.png" alt="add icon" class="profile__add-icon">
+            <button class="profile__add-button" aria-label="close-button">
+                <img src="./images/add-icon.svg" alt="add icon" class="profile__add-icon">
             </button>
         </section>
 
@@ -30,57 +29,59 @@
             <div class="card">
                 <img src="./images/kirill-pershin-1088404-unsplashyosmite.jpg" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Yosemite Valley</p>
+                    <h2 class="card__text">Yosemite Valley</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/kirill-pershin-1404681-unsplashlake.png" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Lake Louise</p>
+                    <h2 class="card__text">Lake Louise</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/kirill-pershin-1556355-unsplashbald.png" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Bald Mountains</p>
+                    <h2 class="card__text">Bald Mountains</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/kirill-pershin-1404681-unsplashlatemar.png" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Latemar</p>
+                    <h2 class="card__text">Latemar</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/kirill-pershin-1556355-unsplashvanoise.png" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Vanoise National Park</p>
+                    <h2 class="card__text">Vanoise National Park</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
             <div class="card">
                 <img src="./images/kirill-pershin-1088404-unsplashlago.png" alt="card image" class="card__image">
                 <div class="card__details">
-                    <p class="card__text">Lago di Braies</p>
+                    <h2 class="card__text">Lago di Braies</h2>
                     <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
                 </div>
             </div>
         </section>
-
-        <section class="overlay overlay_hidden">
-            <form action="" class="overlay__box">
-                <img src="./images/Close Icon.svg" alt="close icon" class="overlay__icon">
-                <p class="overlay__header">Edit profile</p>
-                <input type="text" class="overlay__name" placeholder="Name" name="Name" id="name" autocomplete="off" required>
-                <input type="text" class="overlay__about" placeholder="About me" name="About" id="about" autocomplete="off" required>
-                <button type="submit" class="overlay__button" id="submit">Save</button>
-            </form>
-        </section>
     </main>
-    <footer class="footer">© 2020 Around The U.S.</footer>
+    <footer class="footer">
+        <p class="footer__text"> © 2020 Around The U.S.</p>
+    </footer>
+    <div class="popup popup_hidden">
+        <form action="#" class="popup__box">
+            <img src="./images/close-icon.svg" alt="close icon" class="popup__icon">
+            <h3 class="popup__header">Edit profile</h3>
+            <input type="text" class="popup__name" placeholder="Name" name="Name" id="name" autocomplete="off" required>
+            <input type="text" class="popup__about" placeholder="About me" name="About" id="about" autocomplete="off" required>
+            <button type="submit" class="popup__button" id="submit">Save</button>
+        </form>
+    </div>
+    <script src="./pages/index.js" defer></script>
 </body>
 </html>

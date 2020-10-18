@@ -12,6 +12,7 @@ function openBox() {
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
     popup.classList.remove('popup_hidden');
+    inputName.focus()
 };
 
 function closeBox() {

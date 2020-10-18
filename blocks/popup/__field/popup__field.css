@@ -1,4 +1,4 @@
-.popup__about {
+.popup__field {
     width: 358px;
     margin-left: 36px;
     margin-bottom: 48px;
@@ -12,12 +12,21 @@
     padding-top: 0;
     padding-bottom: calc(27.34px - 16.66px - 1px);
 }
+.popup__field:nth-of-type(1) {
+    margin-bottom: 29.74px;
+    padding-bottom: calc(27.26px - 16.66px - 1px);
+}
+
 
 @media only screen and (max-width: 570px) {
-    .popup__about {
+    .popup__field {
         display: block;
         width: 238px;
         margin: 0 auto 45px;
+        padding-bottom: calc(27px - 16.66px - 1px);
+    }
+    .popup__field:nth-of-type(1) {
+        margin: 0 auto 30px;
         padding-bottom: calc(27px - 16.66px - 1px);
     }
 }

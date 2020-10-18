@@ -16,11 +16,11 @@
             <div class="profile__info">
                 <h1 class="profile__name">Jacques Cousteau</h1>
                 <p class="profile__text">Explorer</p>
-                <button class="profile__edit-button" aria-label="edit-button">
+                <button class="profile__edit-button" aria-label="edit-button" type="button">
                     <img src="./images/edit-icon.svg" alt="edit icon" class="profile__edit-icon">
                 </button>
             </div>
-            <button class="profile__add-button" aria-label="close-button">
+            <button class="profile__add-button" aria-label="close-button" type="button">
                 <img src="./images/add-icon.svg" alt="add icon" class="profile__add-icon">
             </button>
         </section>
@@ -86,13 +86,13 @@
         <p class="footer__text"> © 2020 Around The U.S.</p>
     </footer>
     <div class="popup popup_hidden">
-        <form action="#" class="popup__box">
+        <form action="#" class="popup__box" name="terrible review">
             <button class="button" aria-label="close-button" type="button">
                 <img src="./images/close-icon.svg" alt="close icon" class="popup__icon">
             </button>
             <h3 class="popup__header">Edit profile</h3>
-            <input type="text" class="popup__name" placeholder="Name" name="Name" id="name" autocomplete="off" required>
-            <input type="text" class="popup__about" placeholder="About me" name="About" id="about" autocomplete="off" required>
+            <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
+            <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
             <button type="submit" class="popup__button" id="submit">Save</button>
         </form>
     </div>

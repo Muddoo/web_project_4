@@ -11,12 +11,12 @@ const inputInfo = document.querySelector('#about');
 function openBox() {
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
-    popup.classList.remove('popup_hidden');
+    popup.classList.add('visible');
     inputName.focus()
 };
 
 function closeBox() {
-    popup.classList.add('popup_hidden');
+    popup.classList.remove('visible');
 };
 
 function submitInfo(e) {

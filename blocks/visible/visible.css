@@ -1,4 +1,5 @@
 .visible {
     visibility: visible;
     opacity: 1;
+    transition: visibility 0s, opacity .35s ease-in;
 }

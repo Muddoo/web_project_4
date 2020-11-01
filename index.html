@@ -27,76 +27,38 @@
         </section>
 
         <section class="cards">
-            <div class="card">
-                <img src="./images/kirill-pershin-1088404-unsplashyosmite.jpg" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Yosemite Valley</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/kirill-pershin-1404681-unsplashlake.png" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Lake Louise</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/kirill-pershin-1556355-unsplashbald.png" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Bald Mountains</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/kirill-pershin-1404681-unsplashlatemar.png" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Latemar</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/kirill-pershin-1556355-unsplashvanoise.png" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Vanoise National Park</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/kirill-pershin-1088404-unsplashlago.png" alt="card image" class="card__image">
-                <div class="card__details">
-                    <h2 class="card__text">Lago di Braies</h2>
-                    <button class="button" type="button" aria-label="heart-button">
-                        <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon">
-                    </button>
-                </div>
-            </div>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__text"> © 2020 Around The U.S.</p>
     </footer>
-    <div class="popup">
-        <form action="#" class="popup__box">
-            <button class="button" aria-label="close-button" type="button">
-                <img src="./images/close-icon.svg" alt="close icon" class="popup__icon">
+    <template id="template-form">
+        <div class="popup">
+            <form action="#" class="popup__box">
+                <button class="button" aria-label="close-button" type="button">
+                    <img src="./images/close-icon.svg" alt="close icon" class="popup__icon">
+                </button>
+                <h3 class="popup__header"></h3>
+                <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
+                <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
+                <button type="submit" class="popup__button" id="submit"></button>
+            </form>
+        </div>
+    </template>
+    <template id="template-card">
+        <div class="card">
+            <img src="" alt="card image" class="card__image">
+            <div class="card__details">
+                <h2 class="card__text"></h2>
+                <button class="button" type="button" aria-label="heart-button" title="like">
+                    <img src="./images/Vectorheart.jpg" alt="card icon" class="card__icon-heart">
+                </button>
+            </div>
+            <button class="button" type="button" aria-label="trash-button" title="delete">
+                <img src="./images/delete-icon.svg" alt="delete-icon" class="card__icon-delete">
             </button>
-            <h3 class="popup__header">Edit profile</h3>
-            <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
-            <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
-            <button type="submit" class="popup__button" id="submit">Save</button>
-        </form>
-    </div>
-    <script src="./pages/index.js" defer></script>
+        </div>
+    </template>
+    <script src="./pages/index.js"></script>
 </body>
 </html>

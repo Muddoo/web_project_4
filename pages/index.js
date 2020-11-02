@@ -2,6 +2,8 @@ const editButton  = document.querySelector('.profile__edit-button');
 const box = document.querySelector('.popup__box');
 const txtName = document.querySelector('.profile__name');
 const txtInfo = document.querySelector('.profile__text');
+const templateForm = document.querySelector('#template-form').content;
+const formElement = templateForm.cloneNode(true);
 
 (function initialCards() {
     const cards = document.querySelector('.cards');
@@ -44,7 +46,6 @@ const txtInfo = document.querySelector('.profile__text');
 
 function toggleBox(e, button, box) {
     if(button.contains(e.target)) box.classList.toggle('visible');
-    console.log(box)
 };
 
 function handleSubmit(e, inputName, inputInfo) {
@@ -56,27 +57,28 @@ function handleSubmit(e, inputName, inputInfo) {
 
 function editForm(e) {
     e.stopPropagation();
-    const templateForm = document.querySelector('#template-form').content;
-    const formElement = templateForm.cloneNode(true);
-    const formBox = formElement.querySelector('.popup');
-    const formTitle = formElement.querySelector('.popup__header');
-    const formButton  = formElement.querySelector('.popup__button');
-    const closeButton = formElement.querySelector('.popup__icon');
-    const inputName = formElement.querySelector('#name');
-    const inputInfo = formElement.querySelector('#about');
+    document.querySelector('script').before(formElement);
+    const formBox = document.querySelector('.popup');
+    const formTitle = formBox.querySelector('.popup__header');
+    const formButton  = formBox.querySelector('.popup__button');
+    const closeButton = formBox.querySelector('.popup__icon');
+    const inputName = formBox.querySelector('#name');
+    const inputInfo = formBox.querySelector('#about');
+    const option = {once: true};
     formTitle.textContent = 'Edit profile';
     formButton.textContent = 'Save';
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
-    document.body.append(formElement);
-    toggleBox(e, editButton, formBox);
-    inputName.focus();
-    closeButton.addEventListener('click', e => toggleBox(e, closeButton, formBox));
+    setTimeout(() => {
+      toggleBox(e, editButton, formBox);
+      inputName.focus();
+    }, 22);
+    closeButton.addEventListener('click', e => toggleBox(e, closeButton, formBox), option);
     formButton.addEventListener('click', e => {
-        handleSubmit(e, inputName, inputInfo);
-        toggleBox(e, formButton, formBox);
-    });
-    document.body.addEventListener('click', e => e.target === formBox ? toggleBox(e, formBox, formBox) : null);
+      handleSubmit(e, inputName, inputInfo);
+      toggleBox(e, formButton, formBox);
+    }, option);
+    document.body.addEventListener('click', e => e.target === formBox ? toggleBox(e, formBox, formBox) : null, option);
 };
 
 editButton.addEventListener('click', editForm);

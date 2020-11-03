@@ -4,6 +4,7 @@ const txtName = document.querySelector('.profile__name');
 const txtInfo = document.querySelector('.profile__text');
 const templateForm = document.querySelector('#template-form').content;
 const formElement = templateForm.cloneNode(true);
+let formBox;
 
 (function initialCards() {
     const cards = document.querySelector('.cards');
@@ -44,41 +45,34 @@ const formElement = templateForm.cloneNode(true);
       }
 })();
 
-function toggleBox(e, button, box) {
-    if(button.contains(e.target)) box.classList.toggle('visible');
-};
-
-function handleSubmit(e, inputName, inputInfo) {
-    e.preventDefault();
-    e.stopPropagation();
-    txtName.textContent = inputName.value; 
-    txtInfo.textContent = inputInfo.value;
-};
-
 function editForm(e) {
     e.stopPropagation();
     document.querySelector('script').before(formElement);
-    const formBox = document.querySelector('.popup');
+    formBox = document.querySelector('.popup');
     const formTitle = formBox.querySelector('.popup__header');
     const formButton  = formBox.querySelector('.popup__button');
     const closeButton = formBox.querySelector('.popup__icon');
     const inputName = formBox.querySelector('#name');
     const inputInfo = formBox.querySelector('#about');
-    const option = {once: true};
     formTitle.textContent = 'Edit profile';
     formButton.textContent = 'Save';
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
     setTimeout(() => {
-      toggleBox(e, editButton, formBox);
+      formBox.classList.add('visible');
       inputName.focus();
     }, 22);
-    closeButton.addEventListener('click', e => toggleBox(e, closeButton, formBox), option);
-    formButton.addEventListener('click', e => {
-      handleSubmit(e, inputName, inputInfo);
-      toggleBox(e, formButton, formBox);
-    }, option);
-    document.body.addEventListener('click', e => e.target === formBox ? toggleBox(e, formBox, formBox) : null, option);
+    formBox.addEventListener('click', function handleClick(e) {
+      if(e.target === closeButton || e.target === formBox || e.target === formButton) formBox.removeEventListener('click', handleClick);
+      if(e.target === closeButton || e.target === formBox) formBox.classList.remove('visible');
+      if(e.target === formButton) {
+         formButton.disabled = true;
+         txtName.textContent = inputName.value; 
+         txtInfo.textContent = inputInfo.value;
+         formBox.classList.remove('visible');
+      };
+    });
+    formButton.disabled = false;
 };
 
 editButton.addEventListener('click', editForm);

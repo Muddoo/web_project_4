@@ -51,7 +51,7 @@ function createCard(link, name, insert = 'append') {
   cardImage.setAttribute('src', link);
   cardText.textContent = name;
   cardImage.addEventListener('click', e => showImage(link,name));
-  cardLike.addEventListener('click', e => e.target.src.includes('black') ? e.target.src = '../images/Vectorheart.jpg' : e.target.src = '../images/blackHeart.svg');
+  cardLike.addEventListener('click', e => e.target.src.includes('black') ? e.target.src = './images/Vectorheart.jpg' : e.target.src = './images/blackHeart.svg');
   cardDelete.addEventListener('click', e => e.target.closest('.card').remove())
   if(insert !== 'append') return cards.prepend(cardElement);
   cards.append(cardElement);

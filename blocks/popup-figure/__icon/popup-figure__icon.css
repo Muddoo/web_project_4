@@ -1,0 +1,11 @@
+.popup-figure__icon {
+    position: absolute;
+    width: 40px;
+    top: -35px;
+    right: -35px;
+    cursor: pointer;
+}
+
+.popup-figure__icon:hover {
+    opacity: .6;
+}

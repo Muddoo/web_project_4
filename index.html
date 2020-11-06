@@ -27,17 +27,15 @@
     <footer class="footer">
         <p class="footer__text"> © 2020 Around The U.S.</p>
     </footer>
-    <!-- <template id="template-form"> -->
-        <div class="popup" id="form">
-            <form action="#" class="popup__box">
-                <button class="popup__close" aria-label="close-button" type="button"></button>
-                <h3 class="popup__header">Edit profile</h3>
-                <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
-                <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
-                <button type="submit" class="popup__submit" id="submit">Save</button>
-            </form>
-        </div>
-    <!-- </template> -->
+    <div class="popup" id="form">
+        <form action="#" class="popup__box">
+            <button class="popup__close" aria-label="close-button" type="button"></button>
+            <h3 class="popup__header">Edit profile</h3>
+            <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
+            <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
+            <button type="submit" class="popup__submit" id="submit">Save</button>
+        </form>
+    </div>
     <div class="popup" id="add">
         <form action="#" class="popup__box">
             <button class="popup__close" aria-label="close-button" type="button"></button>
@@ -47,6 +45,13 @@
             <button type="submit" class="popup__submit" id="submit">Create</button>
         </form>
     </div>
+    <figure class="popup-figure">
+        <div class="popup-figure__container">
+            <img src="" alt="popup image" class="popup-figure__image">
+            <figcaption class="popup-figure__caption"></figcaption>
+            <button class="popup-figure__close" aria-label="close-button" type="button" title="close"></button>
+        </div>
+    </figure>
     <template id="template-card">
         <div class="card">
             <img src="" alt="card image" class="card__image">
@@ -57,13 +62,6 @@
             <button class="card__icon-delete" type="button" aria-label="trash-button" title="delete"></button>
         </div>
     </template>
-    <figure class="popup-figure">
-        <div class="popup-figure__container">
-            <img src="" alt="popup image" class="popup-figure__image">
-            <figcaption class="popup-figure__caption"></figcaption>
-            <button class="popup-figure__close" aria-label="close-button" type="button" title="close"></button>
-        </div>
-    </figure>
     <script src="./pages/index.js"></script>
 </body>
 </html>

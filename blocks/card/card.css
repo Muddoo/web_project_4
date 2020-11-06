@@ -3,6 +3,7 @@
 @import url('./__text/card__text.css');
 @import url('./__icon-heart/card__icon-heart.css');
 @import url('./__icon-delete/card__icon-delete.css');
+@import url('./__icon-heart/_black/card__icon-heart_black.css');
 
 .card {
     position: relative;

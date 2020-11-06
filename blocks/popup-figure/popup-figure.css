@@ -1,6 +1,6 @@
 @import url('./__image/popup-figure__image.css');
 @import url('./__container/popup-figure__container.css');
-@import url('./__icon/popup-figure__icon.css');
+@import url('./__close/popup-figure__close.css');
 @import url('./__caption/popup-figure__caption.css');
 
 .popup-figure {

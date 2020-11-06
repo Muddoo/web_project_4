@@ -1,0 +1,19 @@
+.popup-figure__close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -40px;
+    right: -40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    background-image: url('../../../images/close-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.popup-figure__close:hover {
+    opacity: .6;
+}

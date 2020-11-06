@@ -1,8 +1,16 @@
 .card__icon-heart {
-    width: 20.76px;
-    height: 18.13px;
+    min-width: 20.76px;
+    min-height: 18.13px;
     cursor: pointer;
     transition: all .3s;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background-image: url('../../../images/Vectorheart.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
 }
 
 .card__icon-heart:hover {

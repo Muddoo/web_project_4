@@ -18,7 +18,7 @@ function showImage(link,name) {
     popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeButton) && popupFigure.classList.remove('visible'));
 }
 
-function createCard(link, name) {
+function createCard(link, name, insert = 'append') {
   const cardElement = templateCard.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardText  = cardElement.querySelector('.card__text');
@@ -29,7 +29,7 @@ function createCard(link, name) {
   cardImage.addEventListener('click', e => showImage(link,name));
   cardLike.addEventListener('click', e => e.target.classList.toggle('card__icon-heart_black'));
   cardDelete.addEventListener('click', e => e.target.closest('.card').remove())
-  cards.prepend(cardElement);
+  cards[insert](cardElement);
 };
 
 const initialCards = [
@@ -70,14 +70,14 @@ function editForm(e) {
     inputInfo.value = txtInfo.textContent;
     formBox.classList.add('visible');
     inputName.focus();
-    formBox.addEventListener('click', function form(ev) {
-      if(ev.target === formButton) {
-        ev.preventDefault();
+    formBox.addEventListener('click', function form(e) {
+      if(e.target === formButton) {
+        e.preventDefault();
         formButton.disabled = true;
         txtName.textContent = inputName.value;
         txtInfo.textContent = inputInfo.value;
       };
-      if(ev.target === formButton || ev.target === formBox || ev.target === closeButton) {
+      if(e.target === formButton || e.target === formBox || e.target === closeButton) {
         formBox.classList.remove('visible');
         formBox.removeEventListener('click', form);
       };
@@ -93,15 +93,15 @@ function addForm(e) {
     const inputLink = addBox.querySelector('#image');
     addBox.classList.add('visible');
     inputName.focus();
-    addBox.addEventListener('click', function add(ev) {
-      if(ev.target === formButton) {
-        ev.preventDefault();
+    addBox.addEventListener('click', function add(e) {
+      if(e.target === formButton) {
+        e.preventDefault();
         formButton.disabled = true;
         createCard(inputLink.value, inputName.value, 'prepend');
         inputName.value = '';
         inputLink.value = '';
       }
-      if(ev.target === formButton || ev.target === addBox || ev.target === closeButton) {
+      if(e.target === formButton || e.target === addBox || e.target === closeButton) {
         addBox.classList.remove('visible');
         addBox.removeEventListener('click', add);
       };

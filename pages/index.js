@@ -89,7 +89,7 @@ function addForm(e) {
     const addBox = document.querySelector('#add');
     const formButton  = addBox.querySelector('.popup__submit');
     const closeButton = addBox.querySelector('.popup__close');
-    const inputName = addBox.querySelector('#name');
+    const inputName = addBox.querySelector('#img-name');
     const inputLink = addBox.querySelector('#image');
     addBox.classList.add('visible');
     inputName.focus();

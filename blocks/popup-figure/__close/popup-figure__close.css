@@ -17,3 +17,12 @@
 .popup-figure__close:hover {
     opacity: .6;
 }
+
+@media only screen and (max-width: 770px) {
+    .popup-figure__close {
+        width: 25px;
+        height: 25px;
+        top: -30px;
+        right: -25px;
+    }
+}

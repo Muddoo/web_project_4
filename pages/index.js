@@ -18,11 +18,7 @@ const createButton  = addBox.querySelector('.popup__submit');
 const imgInputName = addBox.querySelector('.popup__field');
 const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
 
-function toggle(element, className) {
-  console.log(element.classList.contains(className));
-  // element.classList.contains(className) ? element.classList.remove(className) : element.classList.add(className);
-  element.classList.toggle(className)
-};
+const toggle = (element, className) => element.classList.toggle(className);
 
 function showImage(link,name) {
     toggle(popupFigure,'visible');

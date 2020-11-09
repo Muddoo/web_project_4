@@ -72,7 +72,7 @@ const initialCards = [
   ]; 
 for(const initialCard of initialCards)  createCard(initialCard.link, initialCard.name);
 
-function editForm(e) {
+function editForm() {
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
     toggle(formBox,'visible');

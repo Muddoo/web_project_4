@@ -3,22 +3,38 @@ const addButton = document.querySelector('.profile__add-button');
 const txtName = document.querySelector('.profile__name');
 const txtInfo = document.querySelector('.profile__text');
 const cards = document.querySelector('.cards');
-const templateCard = document.querySelector('#template-card').content;
+const templateCard = document.querySelector('.template-card').content;
 const popupFigure = document.querySelector('.popup-figure');
-const formBox = document.querySelector('#form');
-const addBox = document.querySelector('#add');
+const figureImage = popupFigure.querySelector('.popup-figure__image');
+const figureCaption = popupFigure.querySelector('.popup-figure__caption');
+const closeFigure = popupFigure.querySelector('.popup-figure__close');
+const formBox = document.querySelector('.popup');
+const saveButton  = formBox.querySelector('.popup__submit');
+const closeForm = document.querySelectorAll('.popup__close');
+const inputName = formBox.querySelector('.popup__field');
+const inputInfo = formBox.querySelectorAll('.popup__field')[1];
+const addBox = document.querySelectorAll('.popup')[1];
+const createButton  = addBox.querySelector('.popup__submit');
+const imgInputName = addBox.querySelector('.popup__field');
+const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
+
+function toggle(element, className) {
+  console.log(element.classList.contains(className));
+  // element.classList.contains(className) ? element.classList.remove(className) : element.classList.add(className);
+  element.classList.toggle(className)
+};
 
 function showImage(link,name) {
-    const figureImage = popupFigure.querySelector('.popup-figure__image');
-    const figureCaption = popupFigure.querySelector('.popup-figure__caption');
-    const closeButton = popupFigure.querySelector('.popup-figure__close');
-    popupFigure.classList.add('visible');
+    toggle(popupFigure,'visible');
     figureImage.setAttribute('src', link);
     figureCaption.textContent = name;
-    popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeButton) && popupFigure.classList.remove('visible'));
-}
+};
 
-function createCard(link, name, insert = 'append') {
+//  popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeFigure) && toggle(popupFigure,'visible'));
+closeFigure.addEventListener('click', () => toggle(popupFigure,'visible'));
+// popupFigure.addEventListener('click', e => e.target === popupFigure && toggle(popupFigure,'visible'));
+
+function createCard(link, name) {
   const cardElement = templateCard.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardText  = cardElement.querySelector('.card__text');
@@ -26,10 +42,10 @@ function createCard(link, name, insert = 'append') {
   const cardDelete = cardElement.querySelector('.card__icon-delete');
   cardImage.setAttribute('src', link);
   cardText.textContent = name;
-  cardImage.addEventListener('click', e => showImage(link,name));
+  cardImage.addEventListener('click', () => showImage(link,name));
   cardLike.addEventListener('click', e => e.target.classList.toggle('card__icon-heart_black'));
-  cardDelete.addEventListener('click', e => e.target.closest('.card').remove())
-  cards[insert](cardElement);
+  cardDelete.addEventListener('click', e => e.target.closest('.card').remove());
+  cards.prepend(cardElement);
 };
 
 const initialCards = [
@@ -61,53 +77,71 @@ const initialCards = [
 for(const initialCard of initialCards)  createCard(initialCard.link, initialCard.name);
 
 function editForm(e) {
-    e.stopPropagation();
-    const formButton  = formBox.querySelector('.popup__submit');
-    const closeButton = formBox.querySelector('.popup__close');
-    const inputName = formBox.querySelector('#name');
-    const inputInfo = formBox.querySelector('#about');
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
-    formBox.classList.add('visible');
+    toggle(formBox,'visible');
     inputName.focus();
-    formBox.addEventListener('click', function form(e) {
-      if(e.target === formButton) {
-        e.preventDefault();
-        formButton.disabled = true;
-        txtName.textContent = inputName.value;
-        txtInfo.textContent = inputInfo.value;
-      };
-      if(e.target === formButton || e.target === formBox || e.target === closeButton) {
-        formBox.classList.remove('visible');
-        formBox.removeEventListener('click', form);
-      };
-    });
-    formButton.disabled = false;
-};
+    saveButton.disabled = false;
+  };
+
+  // formBox.addEventListener('click', e => {
+  //   if(e.target === saveButton) {
+  //     e.preventDefault();
+  //     saveButton.disabled = true;
+  //     txtName.textContent = inputName.value;
+  //     txtInfo.textContent = inputInfo.value;
+  //   };
+  //   if(e.target === saveButton || e.target === formBox || e.target === closeForm) toggle(formBox,'visible');
+  // });
+  saveButton.addEventListener('click', e => {
+      e.preventDefault();
+      saveButton.disabled = true;
+      txtName.textContent = inputName.value;
+      txtInfo.textContent = inputInfo.value;
+      toggle(formBox,'visible');
+  });
+  // closeForm.addEventListener('click', () => toggle(formBox,'visible'));
 
 function addForm(e) {
-    e.stopPropagation();
-    const formButton  = addBox.querySelector('.popup__submit');
-    const closeButton = addBox.querySelector('.popup__close');
-    const inputName = addBox.querySelector('#img-name');
-    const inputLink = addBox.querySelector('#image');
-    addBox.classList.add('visible');
-    inputName.focus();
-    addBox.addEventListener('click', function add(e) {
-      if(e.target === formButton) {
-        e.preventDefault();
-        formButton.disabled = true;
-        createCard(inputLink.value, inputName.value, 'prepend');
-        inputName.value = '';
-        inputLink.value = '';
-      }
-      if(e.target === formButton || e.target === addBox || e.target === closeButton) {
-        addBox.classList.remove('visible');
-        addBox.removeEventListener('click', add);
-      };
-    });
-    formButton.disabled = false;
-};
+    toggle(addBox,'visible');
+    imgInputName.focus();
+    createButton.disabled = false;
+  };
+
+  // addBox.addEventListener('click', function add(e) {
+  //   if(e.target === createButton) {
+  //     e.preventDefault();
+  //     createButton.disabled = true;
+  //     createCard(imgInputLink.value, imgInputName.value);
+  //     imgInputName.value = '';
+  //     imgInputLink.value = '';
+  //   }
+  //   if(e.target === createButton || e.target === addBox || e.target === closeButton) {
+  //     addBox.classList.remove('visible');
+  //     addBox.removeEventListener('click', add);
+  //   };
+  // });
+ 
+createButton.addEventListener('click', e => {
+  e.preventDefault();
+  createButton.disabled = true;
+  createCard(imgInputLink.value, imgInputName.value);
+  imgInputName.value = '';
+  imgInputLink.value = '';
+  toggle(addBox,'visible');
+});
+closeForm.forEach(closeBtn => closeBtn.addEventListener('click', () => toggle(closeBtn.closest('.popup'),'visible')));
+// closeForm.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
+//   (e.target === this || e.target === closeBtn) && toggle(this,'visible');
+// }))
+
 
 editButton.addEventListener('click', editForm);
 addButton.addEventListener('click', addForm);
+
+// terrible review as usual ..
+// i had mistakes before in css but you didnt see it 
+// many mistakes here was approved in the first and second review and you just realized them in this review
+// some of your comments arent clear enough .. 
+// this is terrible and gives me a very bad experience dealing with your review and i reported that to the team .. 
+// dont do that again .. consuming mutltiple reviews and wasting my time and my effort 

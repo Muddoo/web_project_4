@@ -14,7 +14,6 @@ const closeForm = document.querySelectorAll('.popup__close');
 const inputName = formBox.querySelector('.popup__field');
 const inputInfo = formBox.querySelectorAll('.popup__field')[1];
 const addBox = document.querySelectorAll('.popup')[1];
-const addFormBox = addBox.querySelector('.popup__box');
 const createButton  = addBox.querySelector('.popup__submit');
 const imgInputName = addBox.querySelector('.popup__field');
 const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
@@ -27,8 +26,9 @@ function showImage(link,name) {
     figureCaption.textContent = name;
 };
 
-popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeFigure) && toggle(popupFigure,'visible'));
-// closeFigure.addEventListener('click', () => toggle(popupFigure,'visible'));
+//  popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeFigure) && toggle(popupFigure,'visible'));
+closeFigure.addEventListener('click', () => toggle(popupFigure,'visible'));
+// popupFigure.addEventListener('click', e => e.target === popupFigure && toggle(popupFigure,'visible'));
 
 function createCard(link, name) {
   const cardElement = templateCard.cloneNode(true);
@@ -80,31 +80,64 @@ function editForm(e) {
     saveButton.disabled = false;
   };
 
-saveButton.addEventListener('click', e => {
-    e.preventDefault();
-    saveButton.disabled = true;
-    txtName.textContent = inputName.value;
-    txtInfo.textContent = inputInfo.value;
-    toggle(formBox,'visible');
-});
+  // formBox.addEventListener('click', e => {
+  //   if(e.target === saveButton) {
+  //     e.preventDefault();
+  //     saveButton.disabled = true;
+  //     txtName.textContent = inputName.value;
+  //     txtInfo.textContent = inputInfo.value;
+  //   };
+  //   if(e.target === saveButton || e.target === formBox || e.target === closeForm) toggle(formBox,'visible');
+  // });
+  saveButton.addEventListener('click', e => {
+      e.preventDefault();
+      saveButton.disabled = true;
+      txtName.textContent = inputName.value;
+      txtInfo.textContent = inputInfo.value;
+      toggle(formBox,'visible');
+  });
+  // closeForm.addEventListener('click', () => toggle(formBox,'visible'));
 
-function addForm(e) {
+function addForm() {
     toggle(addBox,'visible');
     imgInputName.focus();
     createButton.disabled = false;
   };
+
+  // addBox.addEventListener('click', function add(e) {
+  //   if(e.target === createButton) {
+  //     e.preventDefault();
+  //     createButton.disabled = true;
+  //     createCard(imgInputLink.value, imgInputName.value);
+  //     imgInputName.value = '';
+  //     imgInputLink.value = '';
+  //   }
+  //   if(e.target === createButton || e.target === addBox || e.target === closeButton) {
+  //     addBox.classList.remove('visible');
+  //     addBox.removeEventListener('click', add);
+  //   };
+  // });
  
 createButton.addEventListener('click', e => {
   e.preventDefault();
   createButton.disabled = true;
   createCard(imgInputLink.value, imgInputName.value);
-  addFormBox.reset();
+  imgInputName.value = '';
+  imgInputLink.value = '';
   toggle(addBox,'visible');
 });
-// closeForm.forEach(closeBtn => closeBtn.addEventListener('click', () => toggle(closeBtn.closest('.popup'),'visible')));
-closeForm.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
-  (e.target === this || e.target === closeBtn) && toggle(this,'visible');
-}));
+closeForm.forEach(closeBtn => closeBtn.addEventListener('click', () => toggle(closeBtn.closest('.popup'),'visible')));
+// closeForm.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
+//   (e.target === this || e.target === closeBtn) && toggle(this,'visible');
+// }))
+
 
 editButton.addEventListener('click', editForm);
 addButton.addEventListener('click', addForm);
+
+// terrible review as usual ..
+// i had mistakes before in css but you didnt see it 
+// many mistakes here was approved in the first and second review and you just realized them in this review
+// some of your comments arent clear enough .. 
+// this is terrible and gives me a very bad experience dealing with your review and i reported that to the team .. 
+// dont do that again .. consuming mutltiple reviews and wasting my time and my effort 

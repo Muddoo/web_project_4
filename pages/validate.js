@@ -39,6 +39,7 @@ forms.forEach(form => {
     const submitButton = form.querySelector('.popup__submit');
     form.addEventListener('submit', e => {
         e.preventDefault();
+        toggle(form.closest('.popup'));
         submitButton.disabled = true;
     });
 

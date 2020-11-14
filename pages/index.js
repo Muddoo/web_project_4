@@ -8,13 +8,11 @@ const popupFigure = document.querySelector('.popup_figure');
 const figureImage = popupFigure.querySelector('.popup__image');
 const figureCaption = popupFigure.querySelector('.popup__caption');
 const formBox = document.querySelector('.popup');
-const saveButton  = formBox.querySelector('.popup__submit');
 const closePopup = document.querySelectorAll('.popup__close');
 const inputName = formBox.querySelector('.popup__field');
 const inputInfo = formBox.querySelectorAll('.popup__field')[1];
 const addBox = document.querySelectorAll('.popup')[1];
 const addFormBox = addBox.querySelector('.popup__form');
-const createButton  = addBox.querySelector('.popup__submit');
 const imgInputName = addBox.querySelector('.popup__field');
 const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
 
@@ -73,25 +71,21 @@ function editForm() {
     inputInfo.value = txtInfo.textContent;
     toggle(formBox);
     inputName.focus();
-    saveButton.disabled = false;
   };
 
 formBox.addEventListener('submit', () => {
     txtName.textContent = inputName.value;
     txtInfo.textContent = inputInfo.value;
-    toggle(formBox);
 });
 
 function addForm() {
     toggle(addBox);
     imgInputName.focus();
-    createButton.disabled = false;
 }
  
 addBox.addEventListener('submit', () => {
   createCard(imgInputLink.value, imgInputName.value);
   addFormBox.reset();
-  toggle(addBox);
 });
 
 closePopup.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {

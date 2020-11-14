@@ -24,6 +24,14 @@ function setButtonState(inputList,submitButton) {
      }
 }
 
+function toggle(element) {
+    const inputList = element.querySelectorAll('.popup__field');
+    const submitButton = element.querySelector('.popup__submit');
+    inputList && inputList.forEach(input => checkValidity(input));
+    submitButton && setButtonState(inputList,submitButton);
+    element.classList.toggle('visible');
+  } 
+
 // function enableValidation({formSelector,inputSelector,submitButtonSelector}) {
 
 forms.forEach(form => {

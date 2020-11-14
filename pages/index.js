@@ -18,7 +18,6 @@ const createButton  = addBox.querySelector('.popup__submit');
 const imgInputName = addBox.querySelector('.popup__field');
 const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
 
-const toggle = element => element.classList.toggle('visible');
 const escHandler = e => e.key === 'Escape' && document.querySelector('.visible') && toggle(document.querySelector('.visible'));
 
 function showImage(link,name) {

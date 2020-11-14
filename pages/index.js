@@ -4,31 +4,28 @@ const txtName = document.querySelector('.profile__name');
 const txtInfo = document.querySelector('.profile__text');
 const cards = document.querySelector('.cards');
 const templateCard = document.querySelector('.template-card').content;
-const popupFigure = document.querySelector('.popup-figure');
-const figureImage = popupFigure.querySelector('.popup-figure__image');
-const figureCaption = popupFigure.querySelector('.popup-figure__caption');
-const closeFigure = popupFigure.querySelector('.popup-figure__close');
+const popupFigure = document.querySelector('.popup_figure');
+const figureImage = popupFigure.querySelector('.popup__image');
+const figureCaption = popupFigure.querySelector('.popup__caption');
 const formBox = document.querySelector('.popup');
 const saveButton  = formBox.querySelector('.popup__submit');
-const closeForm = document.querySelectorAll('.popup__close');
+const closePopup = document.querySelectorAll('.popup__close');
 const inputName = formBox.querySelector('.popup__field');
 const inputInfo = formBox.querySelectorAll('.popup__field')[1];
 const addBox = document.querySelectorAll('.popup')[1];
-const addFormBox = addBox.querySelector('.popup__box');
+const addFormBox = addBox.querySelector('.popup__form');
 const createButton  = addBox.querySelector('.popup__submit');
 const imgInputName = addBox.querySelector('.popup__field');
 const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
 
-const toggle = (element, className) => element.classList.toggle(className);
+const toggle = element => element.classList.toggle('visible');
+const escHandler = e => e.key === 'Escape' && document.querySelector('.visible') && toggle(document.querySelector('.visible'));
 
 function showImage(link,name) {
-    toggle(popupFigure,'visible');
+    toggle(popupFigure);
     figureImage.setAttribute('src', link);
     figureCaption.textContent = name;
 };
-
-popupFigure.addEventListener('click', e => (e.target === popupFigure || e.target === closeFigure) && toggle(popupFigure,'visible'));
-// closeFigure.addEventListener('click', () => toggle(popupFigure,'visible'));
 
 function createCard(link, name) {
   const cardElement = templateCard.cloneNode(true);
@@ -75,36 +72,33 @@ for(const initialCard of initialCards)  createCard(initialCard.link, initialCard
 function editForm() {
     inputName.value = txtName.textContent;
     inputInfo.value = txtInfo.textContent;
-    toggle(formBox,'visible');
+    toggle(formBox);
     inputName.focus();
     saveButton.disabled = false;
   };
 
-saveButton.addEventListener('click', e => {
-    e.preventDefault();
-    saveButton.disabled = true;
+formBox.addEventListener('submit', () => {
     txtName.textContent = inputName.value;
     txtInfo.textContent = inputInfo.value;
-    toggle(formBox,'visible');
+    toggle(formBox);
 });
 
 function addForm() {
-    toggle(addBox,'visible');
+    toggle(addBox);
     imgInputName.focus();
     createButton.disabled = false;
-  };
+}
  
-createButton.addEventListener('click', e => {
-  e.preventDefault();
-  createButton.disabled = true;
+addBox.addEventListener('submit', () => {
   createCard(imgInputLink.value, imgInputName.value);
   addFormBox.reset();
-  toggle(addBox,'visible');
+  toggle(addBox);
 });
-// closeForm.forEach(closeBtn => closeBtn.addEventListener('click', () => toggle(closeBtn.closest('.popup'),'visible')));
-closeForm.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
-  (e.target === this || e.target === closeBtn) && toggle(this,'visible');
+
+closePopup.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
+  (e.target === this || e.target === closeBtn) && toggle(this);
 }));
 
+document.addEventListener('keyup', escHandler);
 editButton.addEventListener('click', editForm);
 addButton.addEventListener('click', addForm);

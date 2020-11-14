@@ -11,5 +11,6 @@
 @import url('../blocks/card/card.css');
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/popup/popup.css');
-@import url('../blocks/popup-figure/popup-figure.css');
+@import url('../blocks/inactive/inactive.css');
+@import url('../blocks/popup/_figure/popup_figure.css');
 @import url('../blocks/visible/visible.css');

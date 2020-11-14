@@ -4,7 +4,7 @@
     font-size: 24px;
     line-height: 29px;
     margin: 0;
-    padding: 34px 0 calc(111px - 34px - 28.66px) 36px;
+    padding: 34px 0 70px 36px;
 }
 
 @media only screen and (max-width: 570px) {

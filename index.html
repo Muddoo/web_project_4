@@ -28,28 +28,32 @@
         <p class="footer__text"> © 2020 Around The U.S.</p>
     </footer>
     <div class="popup">
-        <form action="#" class="popup__box">
+        <form action="#" class="popup__form" novalidate>
             <button class="popup__close" aria-label="close-button" type="button"></button>
             <h3 class="popup__header">Edit profile</h3>
-            <input type="text" class="popup__field" placeholder="Name" name="Name" id="name" autocomplete="off" required>
-            <input type="text" class="popup__field" placeholder="About me" name="About" id="about" autocomplete="off" required>
+            <input type="text" class="popup__field" placeholder="Name" name="name" id="name" autocomplete="off" minlength="2" maxlength="40" required>
+            <span class="popup__error"></span>
+            <input type="text" class="popup__field" placeholder="About me" name="about" id="about" autocomplete="off" minlength="2" maxlength="200" required>
+            <span class="popup__error"></span>
             <button type="submit" class="popup__submit" id="submit" aria-label="save-button" >Save</button>
         </form>
     </div>
     <div class="popup">
-        <form action="#" class="popup__box">
+        <form action="#" class="popup__form" novalidate>
             <button class="popup__close" aria-label="close-button" type="button"></button>
             <h3 class="popup__header">New place</h3>
-            <input type="text" class="popup__field" placeholder="Title" name="Name" id="img-name" autocomplete="off" required>
-            <input type="text" class="popup__field" placeholder="Image link" name="Image" id="image" autocomplete="off" required>
-            <button type="submit" class="popup__submit" id="create" aria-label="create-button">Create</button>
+            <input type="text" class="popup__field" placeholder="Title" name="title" id="img-name" autocomplete="off" minlength="2" maxlength="30" required>
+            <span class="popup__error"></span>
+            <input type="url" class="popup__field" placeholder="Image link" name="Image" id="image" autocomplete="off" required>
+            <span class="popup__error"></span>
+            <button type="submit" class="popup__submit inactive" id="create" aria-label="create-button">Create</button>
         </form>
     </div>
-    <figure class="popup-figure">
-        <div class="popup-figure__container">
-            <img src="" alt="popup image" class="popup-figure__image">
-            <p class="popup-figure__caption"></p>
-            <button class="popup-figure__close" aria-label="close-button" type="button" title="close"></button>
+    <figure class="popup popup_figure">
+        <div class="popup__container">
+            <img src="" alt="popup image" class="popup__image">
+            <p class="popup__caption"></p>
+            <button class="popup__close popup__close_fig" aria-label="close-button" type="button" title="close"></button>
         </div>
     </figure>
     <template class="template-card">
@@ -63,5 +67,6 @@
         </div>
     </template>
     <script src="./pages/index.js"></script>
+    <script src="./pages/validate.js"></script>
 </body>
 </html>

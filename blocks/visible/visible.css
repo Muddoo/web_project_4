@@ -1,4 +1,6 @@
 .visible {
     opacity: 1;
     pointer-events: all;
+    transform: translateY(0);
+    transition: opacity .4s ease-in, transform 0s;
 }

@@ -7,22 +7,52 @@ const templateCard = document.querySelector('.template-card').content;
 const popupFigure = document.querySelector('.popup_figure');
 const figureImage = popupFigure.querySelector('.popup__image');
 const figureCaption = popupFigure.querySelector('.popup__caption');
-const formBox = document.querySelector('.popup');
-const closePopup = document.querySelectorAll('.popup__close');
-const inputName = formBox.querySelector('.popup__field');
-const inputInfo = formBox.querySelectorAll('.popup__field')[1];
-const addBox = document.querySelectorAll('.popup')[1];
-const addFormBox = addBox.querySelector('.popup__form');
-const imgInputName = addBox.querySelector('.popup__field');
-const imgInputLink = addBox.querySelectorAll('.popup__field')[1];
+const profileFormModal = document.querySelector('.popup_profile');
+const userInputName = document.forms.profileform.elements.name;
+const userInputInfo = document.forms.profileform.elements.about;
+const cardFormModal = document.querySelector('.popup_card');
+const createCardForm = cardFormModal.querySelector('.popup__form');
+const imgInputName = document.forms.cardform.elements.title;
+const imgInputLink = document.forms.cardform.elements.image;
 
-const escHandler = e => e.key === 'Escape' && document.querySelector('.visible') && toggle(document.querySelector('.visible'));
+function toggle(element) {
+  element.classList.toggle('visible');
+}
+
+function close(popup) {
+  const submitButton = popup.querySelector('.popup__submit');
+  popup.removeEventListener('click', closePopup);
+  document.removeEventListener('keydown', escHandler);
+  toggle(popup);
+  submitButton && (submitButton.disabled = true);
+}
+
+function escHandler(e) {
+  if(e.key === 'Escape') {
+    close(document.querySelector('.visible'));
+  }
+}
+
+function closePopup(e) {
+  (e.target === this || e.target === this.querySelector('.popup__close')) && close(this);
+}
+
+function open(popup) {
+  const inputList = popup.querySelectorAll('.popup__field');
+  const submitButton = popup.querySelector('.popup__submit');
+  inputList && inputList.forEach(input => checkValidity(input));
+  submitButton && setButtonState(inputList,submitButton);
+  popup.addEventListener('click', closePopup);
+  document.addEventListener('keydown', escHandler);
+  toggle(popup);
+}
 
 function showImage(link,name) {
-    toggle(popupFigure);
     figureImage.setAttribute('src', link);
+    figureImage.setAttribute('alt', name);
     figureCaption.textContent = name;
-};
+    open(popupFigure);
+}
 
 function createCard(link, name) {
   const cardElement = templateCard.cloneNode(true);
@@ -31,67 +61,37 @@ function createCard(link, name) {
   const cardLike = cardElement.querySelector('.card__icon-heart');
   const cardDelete = cardElement.querySelector('.card__icon-delete');
   cardImage.setAttribute('src', link);
+  cardImage.setAttribute('alt', name);
   cardText.textContent = name;
   cardImage.addEventListener('click', () => showImage(link,name));
   cardLike.addEventListener('click', e => e.target.classList.toggle('card__icon-heart_black'));
   cardDelete.addEventListener('click', e => e.target.closest('.card').remove());
-  cards.prepend(cardElement);
-};
-
-const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-      name: "Vanoise National Park",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-  ]; 
-for(const initialCard of initialCards)  createCard(initialCard.link, initialCard.name);
+  return cardElement;
+}
+ 
+for(const {link,name} of initialCards)  cards.append(createCard(link,name));
 
 function editForm() {
-    inputName.value = txtName.textContent;
-    inputInfo.value = txtInfo.textContent;
-    toggle(formBox);
-    inputName.focus();
-  };
+    userInputName.value = txtName.textContent;
+    userInputInfo.value = txtInfo.textContent;
+    open(profileFormModal);
+    userInputName.focus();
+}
 
-formBox.addEventListener('submit', () => {
-    txtName.textContent = inputName.value;
-    txtInfo.textContent = inputInfo.value;
+profileFormModal.addEventListener('submit', () => {
+    txtName.textContent = userInputName.value;
+    txtInfo.textContent = userInputInfo.value;
 });
 
 function addForm() {
-    toggle(addBox);
+    open(cardFormModal);
     imgInputName.focus();
 }
  
-addBox.addEventListener('submit', () => {
-  createCard(imgInputLink.value, imgInputName.value);
-  addFormBox.reset();
+cardFormModal.addEventListener('submit', () => {
+  cards.prepend(createCard(imgInputLink.value, imgInputName.value));
+  createCardForm.reset();
 });
 
-closePopup.forEach(closeBtn => closeBtn.closest('.popup').addEventListener('click', function(e) {
-  (e.target === this || e.target === closeBtn) && toggle(this);
-}));
-
-document.addEventListener('keyup', escHandler);
 editButton.addEventListener('click', editForm);
 addButton.addEventListener('click', addForm);

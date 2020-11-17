@@ -28,10 +28,6 @@ function enableValidation({formSelector,inputSelector,submitButtonSelector,inact
     forms.forEach(form => {
         const inputList = form.querySelectorAll(inputSelector);
         const submitButton = form.querySelector(submitButtonSelector);
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            close(form.closest('.popup'));
-        });
 
         inputList.forEach(input => {
             input.addEventListener('input', () => {

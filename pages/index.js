@@ -1,3 +1,4 @@
+const SubmitButtons = document.querySelectorAll('.popup__submit');
 const editButton  = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const txtName = document.querySelector('.profile__name');
@@ -19,12 +20,15 @@ function toggle(element) {
   element.classList.toggle('visible');
 }
 
+function disableAllSubmitButtons() {
+   SubmitButtons.forEach(button => button.disabled = true) ;
+}
+
 function close(popup) {
-  const submitButton = popup.querySelector('.popup__submit');
   popup.removeEventListener('click', closePopup);
   document.removeEventListener('keydown', escHandler);
+  disableAllSubmitButtons();
   toggle(popup);
-  submitButton && (submitButton.disabled = true);
 }
 
 function escHandler(e) {
@@ -37,11 +41,15 @@ function closePopup(e) {
   (e.target === this || e.target === this.querySelector('.popup__close')) && close(this);
 }
 
-function open(popup) {
+function validateForm(popup) {
   const inputList = popup.querySelectorAll('.popup__field');
   const submitButton = popup.querySelector('.popup__submit');
-  inputList && inputList.forEach(input => checkValidity(input));
-  submitButton && setButtonState(inputList,submitButton);
+  inputList.forEach(input => checkValidity(input));
+  setButtonState(inputList,submitButton);
+}
+
+function open(popup,form) {
+  form && validateForm(popup);
   popup.addEventListener('click', closePopup);
   document.addEventListener('keydown', escHandler);
   toggle(popup);
@@ -74,23 +82,27 @@ for(const {link,name} of initialCards)  cards.append(createCard(link,name));
 function editForm() {
     userInputName.value = txtName.textContent;
     userInputInfo.value = txtInfo.textContent;
-    open(profileFormModal);
+    open(profileFormModal,true);
     userInputName.focus();
 }
 
-profileFormModal.addEventListener('submit', () => {
+function addForm() {
+  open(cardFormModal,true);
+  imgInputName.focus();
+}
+
+profileFormModal.addEventListener('submit', e => {
+    e.preventDefault();
     txtName.textContent = userInputName.value;
     txtInfo.textContent = userInputInfo.value;
+    close(profileFormModal.closest('.popup'));
 });
-
-function addForm() {
-    open(cardFormModal);
-    imgInputName.focus();
-}
  
-cardFormModal.addEventListener('submit', () => {
+cardFormModal.addEventListener('submit', e => {
+  e.preventDefault(); 
   cards.prepend(createCard(imgInputLink.value, imgInputName.value));
   createCardForm.reset();
+  close(cardFormModal.closest('.popup'));
 });
 
 editButton.addEventListener('click', editForm);

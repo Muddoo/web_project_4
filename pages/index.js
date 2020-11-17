@@ -25,7 +25,7 @@ function toggle(element) {
 }
 
 function disableAllSubmitButtons() {
-   SubmitButtons.forEach(button => button.disabled = true) ;
+   SubmitButtons.forEach(button => button.disabled = true);
 }
 
 function close(popup) {
@@ -47,7 +47,8 @@ function closePopup(e) {
 
 function validateForm(inputList,submitButton) {
   inputList.forEach(input => checkValidity(input));
-  setButtonState(inputList,submitButton);
+  submitButton.classList.add('inactive');
+  submitButton.disabled = true;
 }
 
 function open(popup,form) {

@@ -15,6 +15,10 @@ const cardFormModal = document.querySelector('.popup_card');
 const createCardForm = cardFormModal.querySelector('.popup__form');
 const imgInputName = document.forms.cardform.elements.title;
 const imgInputLink = document.forms.cardform.elements.image;
+const inputListFormModal = profileFormModal.querySelectorAll('.popup__field');
+const inputListCardModal = cardFormModal.querySelectorAll('.popup__field');
+const submitButtonFormModal = profileFormModal.querySelector('.popup__submit');
+const submitButtonCardModal = cardFormModal.querySelector('.popup__submit');
 
 function toggle(element) {
   element.classList.toggle('visible');
@@ -41,15 +45,13 @@ function closePopup(e) {
   (e.target === this || e.target === this.querySelector('.popup__close')) && close(this);
 }
 
-function validateForm(popup) {
-  const inputList = popup.querySelectorAll('.popup__field');
-  const submitButton = popup.querySelector('.popup__submit');
+function validateForm(inputList,submitButton) {
   inputList.forEach(input => checkValidity(input));
   setButtonState(inputList,submitButton);
 }
 
 function open(popup,form) {
-  form && validateForm(popup);
+  form && validateForm(form.inputList,form.submitButton);
   popup.addEventListener('click', closePopup);
   document.addEventListener('keydown', escHandler);
   toggle(popup);
@@ -82,12 +84,12 @@ for(const {link,name} of initialCards)  cards.append(createCard(link,name));
 function editForm() {
     userInputName.value = txtName.textContent;
     userInputInfo.value = txtInfo.textContent;
-    open(profileFormModal,true);
+    open(profileFormModal,{inputList: inputListFormModal, submitButton: submitButtonFormModal});
     userInputName.focus();
 }
 
 function addForm() {
-  open(cardFormModal,true);
+  open(cardFormModal,{inputList: inputListCardModal, submitButton: submitButtonCardModal});
   imgInputName.focus();
 }
 

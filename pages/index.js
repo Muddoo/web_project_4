@@ -24,25 +24,33 @@ function toggle(element) {
   element.classList.toggle('visible');
 }
 
-function disableAllSubmitButtons() {
-   SubmitButtons.forEach(button => button.disabled = true);
-}
-
 function close(popup) {
   popup.removeEventListener('click', closePopup);
   document.removeEventListener('keydown', escHandler);
-  disableAllSubmitButtons();
+  document.activeElement.blur();
   toggle(popup);
 }
 
 function escHandler(e) {
-  if(e.key === 'Escape') {
-    close(document.querySelector('.visible'));
-  }
+  if(e.key === 'Escape') close(document.querySelector('.visible'));
 }
 
 function closePopup(e) {
   (e.target === this || e.target === this.querySelector('.popup__close')) && close(this);
+}
+
+function profileFormSubmit(e) {
+  e.preventDefault();
+  txtName.textContent = userInputName.value;
+  txtInfo.textContent = userInputInfo.value;
+  close(profileFormModal);
+}
+
+function cardFormSubmit(e) {
+  e.preventDefault(); 
+  cards.prepend(createCard(imgInputLink.value, imgInputName.value));
+  createCardForm.reset();
+  close(cardFormModal);
 }
 
 function validateForm(inputList,submitButton) {
@@ -95,19 +103,7 @@ function addForm() {
   imgInputName.focus();
 }
 
-profileFormModal.addEventListener('submit', e => {
-    e.preventDefault();
-    txtName.textContent = userInputName.value;
-    txtInfo.textContent = userInputInfo.value;
-    close(profileFormModal.closest('.popup'));
-});
- 
-cardFormModal.addEventListener('submit', e => {
-  e.preventDefault(); 
-  cards.prepend(createCard(imgInputLink.value, imgInputName.value));
-  createCardForm.reset();
-  close(cardFormModal.closest('.popup'));
-});
-
+profileFormModal.addEventListener('submit', profileFormSubmit);
+cardFormModal.addEventListener('submit', cardFormSubmit);
 editButton.addEventListener('click', editForm);
 addButton.addEventListener('click', addForm);

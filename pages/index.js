@@ -51,8 +51,7 @@ function validateForm(inputList,submitButton) {
   submitButton.disabled = true;
 }
 
-function open(popup,form) {
-  form && validateForm(form.inputList,form.submitButton);
+function open(popup) {
   popup.addEventListener('click', closePopup);
   document.addEventListener('keydown', escHandler);
   toggle(popup);
@@ -85,12 +84,14 @@ for(const {link,name} of initialCards)  cards.append(createCard(link,name));
 function editForm() {
     userInputName.value = txtName.textContent;
     userInputInfo.value = txtInfo.textContent;
-    open(profileFormModal,{inputList: inputListFormModal, submitButton: submitButtonFormModal});
+    validateForm(inputListFormModal,submitButtonFormModal);
+    open(profileFormModal);
     userInputName.focus();
 }
 
 function addForm() {
-  open(cardFormModal,{inputList: inputListCardModal, submitButton: submitButtonCardModal});
+  validateForm(inputListCardModal,submitButtonCardModal);
+  open(cardFormModal);
   imgInputName.focus();
 }
 

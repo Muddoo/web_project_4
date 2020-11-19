@@ -1,6 +1,6 @@
 function showError(input, inputErrorClass) {
     input.classList.add(inputErrorClass);
-    if(/\d/.test(input.value.trim()[0]) && !input.validationMessage) input.setCustomValidity('Number is not allowed, yo!');
+    if(/\d/.test(input.value.trim()) && !input.validationMessage) input.setCustomValidity('Number is not allowed, yo!');
     else if(input.value.trim().length < 2 && !input.validationMessage) input.setCustomValidity('You gotta fill this out with two characters at least, yo!');
     input.nextElementSibling.textContent = input.validationMessage;
 }
@@ -12,7 +12,7 @@ function hideError(input, inputErrorClass) {
 
 function checkValidity(input,inputErrorClass = "popup__field_border_red") {
      input.setCustomValidity('');
-     input.validity.valid && input.value.trim().length > 1 && !/\d/.test(input.value.trim()[0]) ?  hideError(input,inputErrorClass) : showError(input,inputErrorClass);
+     input.validity.valid && input.value.trim().length > 1 && !/\d/.test(input.type !== 'url' && input.value.trim()) ?  hideError(input,inputErrorClass) : showError(input,inputErrorClass);
 }
 
 function setButtonState(inputList,submitButton,inactiveButtonClass = "inactive") {

@@ -1,52 +1,50 @@
-function showError(input, inputErrorClass) {
-    input.classList.add(inputErrorClass);
-    if(/\d/.test(input.value.trim()) && !input.validationMessage) input.setCustomValidity('Number is not allowed, yo!');
-    else if(input.value.trim().length < 2 && !input.validationMessage) input.setCustomValidity('You gotta fill this out with two characters at least, yo!');
-    input.nextElementSibling.textContent = input.validationMessage;
-}
+export default class FormValidator {
+    constructor(settings,form) {
+        this._settings = settings;
+        this._form = form;
+    }
 
-function hideError(input, inputErrorClass) {
-    input.classList.remove(inputErrorClass);
-    input.nextElementSibling.textContent = '';
-}
+    static _hideError(input, inputErrorClass) {
+        input.classList.remove(inputErrorClass);
+        input.nextElementSibling.textContent = '';
+    }
 
-function checkValidity(input,inputErrorClass = "popup__field_border_red") {
-     input.setCustomValidity('');
-     input.validity.valid && input.value.trim().length > 1 && !/\d/.test(input.type !== 'url' && input.value.trim()) ?  hideError(input,inputErrorClass) : showError(input,inputErrorClass);
-}
+    static _showError(input, inputErrorClass) {
+        input.classList.add(inputErrorClass);
+        if(/\d/.test(input.value.trim()) && !input.validationMessage) input.setCustomValidity('Number is not allowed, yo!');
+        else if(input.value.trim().length < 2 && !input.validationMessage) input.setCustomValidity('You gotta fill this out with two characters at least, yo!');
+        input.nextElementSibling.textContent = input.validationMessage;
+    }
 
-function setButtonState(inputList,submitButton,inactiveButtonClass = "inactive") {
-     const isValid = [...inputList].every(input => input.validity.valid && input.value.trim());
-     if(isValid) {
+    static _checkValidity(input,inputErrorClass) {
+        input.setCustomValidity('');
+        input.validity.valid &&
+        input.value.trim().length > 1 &&
+        !/\d/.test(input.type !== 'url' && input.value.trim()) ?
+          FormValidator._hideError(input,inputErrorClass) : FormValidator._showError(input,inputErrorClass);
+   }
+
+    static _setButtonState(inputList,submitButton,inactiveButtonClass) {
+        const isValid = [...inputList].every(input => input.validity.valid && input.value.trim());
+        if(isValid) {
         submitButton.classList.remove(inactiveButtonClass);
         submitButton.disabled = false;
-     } else {
+        } else {
         submitButton.classList.add(inactiveButtonClass);
         submitButton.disabled = true;
-     }
-}
+        }
+   }
 
-function enableValidation({formSelector,inputSelector,submitButtonSelector,inactiveButtonClass,inputErrorClass}) {
-    const forms = document.querySelectorAll(formSelector);
-    forms.forEach(form => {
-        const inputList = form.querySelectorAll(inputSelector);
-        const submitButton = form.querySelector(submitButtonSelector);
+    enableValidation() {
+        const {inputSelector,submitButtonSelector,inactiveButtonClass,inputErrorClass} = this._settings;
+        const inputList = this._form.querySelectorAll(inputSelector);
+        const submitButton = this._form.querySelector(submitButtonSelector);
 
         inputList.forEach(input => {
             input.addEventListener('input', () => {
-                checkValidity(input,inputErrorClass);
-                setButtonState(inputList,submitButton,inactiveButtonClass);
+                FormValidator._checkValidity(input,inputErrorClass);
+                FormValidator._setButtonState(inputList,submitButton,inactiveButtonClass);
             });
         });
-    });
-
+    }
 }
-
-enableValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__field",
-    submitButtonSelector: ".popup__submit",
-    inactiveButtonClass: "inactive",
-    inputErrorClass: "popup__field_border_red",
-    errorClass: "popup__error_visible"
-  });

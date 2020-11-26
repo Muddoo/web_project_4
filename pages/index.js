@@ -1,13 +1,13 @@
-const SubmitButtons = document.querySelectorAll('.popup__submit');
+import initialCards from './initialcards.js';
+import {Card, open, close} from './Card.js';
+import FormValidator from './validate.js';
+
 const editButton  = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const txtName = document.querySelector('.profile__name');
 const txtInfo = document.querySelector('.profile__text');
 const cards = document.querySelector('.cards');
 const templateCard = document.querySelector('.template-card').content;
-const popupFigure = document.querySelector('.popup_figure');
-const figureImage = popupFigure.querySelector('.popup__image');
-const figureCaption = popupFigure.querySelector('.popup__caption');
 const profileFormModal = document.querySelector('.popup_profile');
 const userInputName = document.forms.profileform.elements.name;
 const userInputInfo = document.forms.profileform.elements.about;
@@ -15,29 +15,29 @@ const cardFormModal = document.querySelector('.popup_card');
 const createCardForm = cardFormModal.querySelector('.popup__form');
 const imgInputName = document.forms.cardform.elements.title;
 const imgInputLink = document.forms.cardform.elements.image;
-const inputListFormModal = profileFormModal.querySelectorAll('.popup__field');
-const inputListCardModal = cardFormModal.querySelectorAll('.popup__field');
 const submitButtonFormModal = profileFormModal.querySelector('.popup__submit');
 const submitButtonCardModal = cardFormModal.querySelector('.popup__submit');
 
-function toggle(element) {
-  element.classList.toggle('visible');
+function initiateAndInsertCard(cardInfo,insert) {
+  const cardObj = new Card(cardInfo,templateCard);
+  const card    = cardObj.generateCard();
+  cards[insert](card);
 }
 
-function close(popup) {
-  popup.removeEventListener('click', closePopup);
-  document.removeEventListener('keydown', escHandler);
-  document.activeElement.blur();
-  toggle(popup);
-}
+for(const initialCard of initialCards)   initiateAndInsertCard(initialCard,'append');
 
-function escHandler(e) {
-  if(e.key === 'Escape') close(document.querySelector('.visible'));
-}
+document.querySelectorAll('.popup__form').forEach(form => {
+  const formObj = new FormValidator({
+      formSelector: ".popup__form",
+      inputSelector: ".popup__field",
+      submitButtonSelector: ".popup__submit",
+      inactiveButtonClass: "inactive",
+      inputErrorClass: "popup__field_border_red",
+      errorClass: "popup__error_visible"
+    },form);
 
-function closePopup(e) {
-  (e.target === this || e.target === this.querySelector('.popup__close')) && close(this);
-}
+    formObj.enableValidation();
+});
 
 function profileFormSubmit(e) {
   e.preventDefault();
@@ -48,57 +48,27 @@ function profileFormSubmit(e) {
 
 function cardFormSubmit(e) {
   e.preventDefault(); 
-  cards.prepend(createCard(imgInputLink.value, imgInputName.value));
+  const newCard = {name: imgInputName.value, link: imgInputLink.value};
+  initiateAndInsertCard(newCard,'prepend')
   createCardForm.reset();
   close(cardFormModal);
 }
 
-function validateForm(inputList,submitButton) {
-  inputList.forEach(input => checkValidity(input));
+function disableSubmitButton(submitButton) {
   submitButton.classList.add('inactive');
   submitButton.disabled = true;
 }
 
-function open(popup) {
-  popup.addEventListener('click', closePopup);
-  document.addEventListener('keydown', escHandler);
-  toggle(popup);
-}
-
-function showImage(link,name) {
-    figureImage.setAttribute('src', link);
-    figureImage.setAttribute('alt', name);
-    figureCaption.textContent = name;
-    open(popupFigure);
-}
-
-function createCard(link, name) {
-  const cardElement = templateCard.cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
-  const cardText  = cardElement.querySelector('.card__text');
-  const cardLike = cardElement.querySelector('.card__icon-heart');
-  const cardDelete = cardElement.querySelector('.card__icon-delete');
-  cardImage.setAttribute('src', link);
-  cardImage.setAttribute('alt', name);
-  cardText.textContent = name;
-  cardImage.addEventListener('click', () => showImage(link,name));
-  cardLike.addEventListener('click', e => e.target.classList.toggle('card__icon-heart_black'));
-  cardDelete.addEventListener('click', e => e.target.closest('.card').remove());
-  return cardElement;
-}
- 
-for(const {link,name} of initialCards)  cards.append(createCard(link,name));
-
 function editForm() {
     userInputName.value = txtName.textContent;
     userInputInfo.value = txtInfo.textContent;
-    validateForm(inputListFormModal,submitButtonFormModal);
+    disableSubmitButton(submitButtonFormModal);
     open(profileFormModal);
     userInputName.focus();
 }
 
 function addForm() {
-  validateForm(inputListCardModal,submitButtonCardModal);
+  disableSubmitButton(submitButtonCardModal);
   open(cardFormModal);
   imgInputName.focus();
 }

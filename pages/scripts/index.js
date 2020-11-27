@@ -1,6 +1,7 @@
 import initialCards from './initialcards.js';
-import {Card, open, close} from './Card.js';
-import FormValidator from './validate.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import {open,close} from './utils.js';
 
 const editButton  = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -28,12 +29,12 @@ for(const initialCard of initialCards)   initiateAndInsertCard(initialCard,'appe
 
 document.querySelectorAll('.popup__form').forEach(form => {
   const formObj = new FormValidator({
-      formSelector: ".popup__form",
-      inputSelector: ".popup__field",
-      submitButtonSelector: ".popup__submit",
-      inactiveButtonClass: "inactive",
-      inputErrorClass: "popup__field_border_red",
-      errorClass: "popup__error_visible"
+      formSelector: '.popup__form',
+      inputSelector: '.popup__field',
+      submitButtonSelector: '.popup__submit',
+      inactiveButtonClass: 'inactive',
+      inputErrorClass: 'popup__field_border_red',
+      errorClass: 'popup__error_visible'
     },form);
 
     formObj.enableValidation();
@@ -54,21 +55,16 @@ function cardFormSubmit(e) {
   close(cardFormModal);
 }
 
-function disableSubmitButton(submitButton) {
-  submitButton.classList.add('inactive');
-  submitButton.disabled = true;
-}
-
 function editForm() {
-    userInputName.value = txtName.textContent;
-    userInputInfo.value = txtInfo.textContent;
-    disableSubmitButton(submitButtonFormModal);
-    open(profileFormModal);
-    userInputName.focus();
+  userInputName.value = txtName.textContent;
+  userInputInfo.value = txtInfo.textContent;
+  FormValidator.disableSubmitButton(submitButtonFormModal);
+  open(profileFormModal);
+  userInputName.focus();
 }
 
 function addForm() {
-  disableSubmitButton(submitButtonCardModal);
+  FormValidator.disableSubmitButton(submitButtonCardModal);
   open(cardFormModal);
   imgInputName.focus();
 }

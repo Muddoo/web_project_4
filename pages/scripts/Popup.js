@@ -48,7 +48,7 @@ export default class PopupWithForm extends Popup {
     _handleSubmit = (e) => {
         console.log(e);
         e.preventDefault();
-        this._formSubmit(e);
+        this._formSubmit();
         this.close();
     }
 

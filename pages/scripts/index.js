@@ -40,8 +40,8 @@ document.querySelectorAll('.popup__form').forEach(form => (
 ));
 
 function profileFormSubmit(e) {
-  e.preventDefault();
-  console.log(e);
+  // e.preventDefault();
+  // console.log(e);
   // txtName.textContent = userInputName.value;
   // txtInfo.textContent = userInputInfo.value;
   // close(profileFormModal);

@@ -1,4 +1,6 @@
-import {open} from './utils.js';
+// import {open} from './utils.js';
+import Popup from './Popup.js';
+
 
 const popupFigure = document.querySelector('.popup_figure');
 const figureImage = popupFigure.querySelector('.popup__image');
@@ -9,6 +11,7 @@ export default class Card {
         this._link = data.link;
         this._name = data.name;
         this._template = template;
+        return this._generateCard();
     }
   
     _getTemplate() {
@@ -19,7 +22,8 @@ export default class Card {
       figureImage.setAttribute('src', e.target.src);
       figureImage.setAttribute('alt', e.target.alt);
       figureCaption.textContent = e.target.alt;
-      open(popupFigure);
+      // open(popupFigure);
+      new Popup('.popup_figure');
     }
   
     _handleLike(e) {
@@ -36,7 +40,7 @@ export default class Card {
       this._cardDelete.addEventListener('click', this._handleDelete);
     }
   
-    generateCard() {
+    _generateCard() {
       this._cardElement = this._getTemplate();
       this._cardImage  = this._cardElement.querySelector('.card__image');
       this._cardText   = this._cardElement.querySelector('.card__text');

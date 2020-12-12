@@ -22,17 +22,4 @@ cards.prepend(new Card(newCard,templateCard));
 createCardForm.reset();
 }
 
-export {
-    editButton,
-    addButton,
-    cards,
-    templateCard,
-    userInputName,
-    userInputInfo,
-    cardFormModal,
-    createCardForm,
-    imgInputName,
-    imgInputLink,
-    profileFormSubmit,
-    cardFormSubmit,
-}
+export {editButton, addButton, templateCard, profileFormSubmit, cardFormSubmit}

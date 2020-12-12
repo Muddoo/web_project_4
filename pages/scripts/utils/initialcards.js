@@ -1,4 +1,4 @@
-export const initialCards = [
+const initialCards = [
     {
       name: "Yosemite Valley",
       link: "https://code.s3.yandex.net/web-code/yosemite.jpg"

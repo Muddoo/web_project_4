@@ -25,7 +25,7 @@ export default class FormValidator {
           this._hideError(input,inputErrorClass) : this._showError(input,inputErrorClass);
    }
 
-    static disableSubmitButton(submitButton,inactiveButtonClass = 'inactive') {
+    _disableSubmitButton(submitButton,inactiveButtonClass = 'inactive') {
         submitButton.classList.add(inactiveButtonClass);
         submitButton.disabled = true;
     }
@@ -36,7 +36,7 @@ export default class FormValidator {
         submitButton.classList.remove(inactiveButtonClass);
         submitButton.disabled = false;
         } else {
-        FormValidator.disableSubmitButton(submitButton,inactiveButtonClass);
+        this._disableSubmitButton(submitButton,inactiveButtonClass);
         }
    }
 

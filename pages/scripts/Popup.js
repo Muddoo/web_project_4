@@ -1,7 +1,6 @@
-class Popup {
+export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
-        this.open();
     }
 
     _toggle() {
@@ -35,32 +34,5 @@ class Popup {
         this.removeEventListeners();
         document.activeElement.blur();
         this._toggle();
-    }
-}
-
-export default class PopupWithForm extends Popup {
-    constructor(popupSelector, formSubmit) {
-        super(popupSelector);
-        this._formSubmit = formSubmit;
-        console.log(this._formSubmit)
-    }
-
-    _handleSubmit = (e) => {
-        console.log(e);
-        e.preventDefault();
-        this._formSubmit();
-        this.close();
-    }
-
-    setEventListeners() {
-        super.setEventListeners();
-        this._popup.addEventListener('submit', this._handleSubmit);
-        console.log(this._popup)
-    }
-
-    removeEventListeners() {
-        super.removeEventListeners();
-        this._popup.removeEventListener('submit', this._handleSubmit);
-        console.log(this._popup)
     }
 }

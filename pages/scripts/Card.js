@@ -1,10 +1,4 @@
-// import {open} from './utils.js';
-import Popup from './Popup.js';
-
-
-const popupFigure = document.querySelector('.popup_figure');
-const figureImage = popupFigure.querySelector('.popup__image');
-const figureCaption = popupFigure.querySelector('.popup__caption');
+import PopupWithImage from './PopupWithImage.js';
 
 export default class Card {
     constructor(data,template) {
@@ -17,14 +11,6 @@ export default class Card {
     _getTemplate() {
        return this._template.cloneNode(true);
     }
-    
-    _showImage(e) {      
-      figureImage.setAttribute('src', e.target.src);
-      figureImage.setAttribute('alt', e.target.alt);
-      figureCaption.textContent = e.target.alt;
-      // open(popupFigure);
-      new Popup('.popup_figure');
-    }
   
     _handleLike(e) {
       e.target.classList.toggle('card__icon-heart_black');
@@ -35,7 +21,7 @@ export default class Card {
     }
   
     _setEventListeners() {
-      this._cardImage.addEventListener('click', this._showImage);
+      this._cardImage.addEventListener('click', event => new PopupWithImage('.popup_figure', event.target));
       this._cardLike.addEventListener('click', this._handleLike);
       this._cardDelete.addEventListener('click', this._handleDelete);
     }

@@ -3,6 +3,7 @@ import Card from './Card.js'
 import FormValidator from './FormValidator.js'
 import Section from './Section.js'
 import PopupWithForm from './PopupWithForm.js'
+import UserInfo from './UserInfo.js'
 
 const editButton  = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
@@ -36,8 +37,7 @@ document.querySelectorAll('.popup__form').forEach(form => (
 ));
 
 function profileFormSubmit() {
-  txtName.textContent = userInputName.value;
-  txtInfo.textContent = userInputInfo.value;
+  new UserInfo(['.profile__name','.profile__text']).setUserInfo(userInputName.value,userInputInfo.value);
 }
 
 function cardFormSubmit() {
@@ -47,7 +47,7 @@ function cardFormSubmit() {
 }
 
 editButton.addEventListener('click', () => new PopupWithForm('.popup_profile',{
-  array: ['.profile__name','.profile__text'],
+  info: new UserInfo(['.profile__name','.profile__text']).getUserInfo(),
   submit: profileFormSubmit
 }));
 

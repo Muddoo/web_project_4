@@ -1,9 +1,9 @@
 import Popup from './Popup.js'
 
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, {array = [],submit}) {
+    constructor(popupSelector, {info,submit}) {
         super(popupSelector);
-        this._array = array;
+        this._info = info;
         this._submitForm = submit;
         this.open();
     }
@@ -27,7 +27,7 @@ export default class PopupWithForm extends Popup {
     open() {
         super.open();
         this._popup.querySelector('.popup__field').focus();
-        this._popup.querySelectorAll('.popup__field').forEach((input,i) => (input.value = document.querySelector(this._array[i])?.textContent || ''));
+        this._popup.querySelectorAll('.popup__field').forEach((input,i) => (input.value = this._info?.[i] || ''));
         this._popup.querySelector('.popup__submit').classList.add('inactive');
         this._popup.querySelector('.popup__submit').disabled = true;
     }

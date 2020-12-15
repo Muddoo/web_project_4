@@ -9,7 +9,7 @@
     .popup__close_fig {
         width: 25px;
         height: 25px;
-        top: -30px;
-        right: -25px;
+        top: -40px;
+        right: 0;
     }
 }

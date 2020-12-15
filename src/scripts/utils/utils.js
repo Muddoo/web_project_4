@@ -13,9 +13,9 @@ function profileFormSubmit([name,info]) {
   }
   
 function cardFormSubmit([name,link]) {
-const newCard = {name, link};
-cards.prepend(new Card(newCard,templateCard));
-createCardForm.reset();
+    const newCard = {name, link};
+    cards.prepend(new Card(newCard,templateCard));
+    createCardForm.reset();
 }
 
 export {editButton, addButton, templateCard, profileFormSubmit, cardFormSubmit}

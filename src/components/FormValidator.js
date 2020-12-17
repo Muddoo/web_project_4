@@ -1,8 +1,7 @@
 export default class FormValidator {
-    constructor(settings,form) {
+    constructor(settings) {
         this._settings = settings;
-        this._form = form;
-        this._enableValidation();
+        return this.enableValidation.bind(this);
     }
 
     _hideError(input, inputErrorClass) {
@@ -40,10 +39,10 @@ export default class FormValidator {
         }
    }
 
-    _enableValidation() {
+    enableValidation(form) {
         const {inputSelector,submitButtonSelector,inactiveButtonClass,inputErrorClass} = this._settings;
-        const inputList = this._form.querySelectorAll(inputSelector);
-        const submitButton = this._form.querySelector(submitButtonSelector);
+        const inputList = form.querySelectorAll(inputSelector);
+        const submitButton = form.querySelector(submitButtonSelector);
 
         inputList.forEach(input => {
             input.addEventListener('input', () => {

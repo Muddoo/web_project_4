@@ -16,22 +16,16 @@ export default class Popup {
     }
 
     setEventListeners() {
-        this._popup.addEventListener('click', this._closePopup);
-        document.addEventListener('keydown', this._escHandler);   
-    }
-
-    removeEventListeners() {
-        this._popup.removeEventListener('click', this._closePopup);
-        document.removeEventListener('keydown', this._escHandler);   
+        this._popup.addEventListener('click', this._closePopup);   
     }
 
     open() {
-        this.setEventListeners();
+        document.addEventListener('keydown', this._escHandler);  
         this._toggle();
     }
 
     close() {
-        this.removeEventListeners();
+        document.removeEventListener('keydown', this._escHandler); 
         document.activeElement.blur();
         this._toggle();
     }

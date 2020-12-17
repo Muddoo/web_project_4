@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        main: './src/scripts/page/index.js'
+        main: './src/page/index.js'
     },
     output: {
         filename: 'main.js',
@@ -19,8 +19,12 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|svg|jpg|gif|woff2|woff)$/,
-                use: 'file-loader'
+                test: /\.(png|svg|jpg|gif)$/,
+                use: 'file-loader?name=./images/[name].[ext]'
+            },
+            {
+                test: /\.(woff2|woff)$/,
+                use: 'file-loader?name=./vendor/[name].[ext]'
             },
             {
                 test: /\.html$/,

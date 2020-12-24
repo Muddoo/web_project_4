@@ -20,7 +20,12 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: 'file-loader?name=./images/[name].[ext]'
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'images/[name].[ext]'
+                    }
+                }
             },
             {
                 test: /\.(woff2|woff)$/,
@@ -45,7 +50,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html' 
+            template: './src/index.html',
+            favicon: './src/images/android-chrome.jpg',
           }),
         new MiniCssExtractPlugin()
     ],

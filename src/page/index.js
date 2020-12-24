@@ -1,6 +1,6 @@
 import './index.css'
-import {formValidator,handleEditButtonClick,handleAddButtonClick} from '../utils/constants.js'
-
+import {initialCards,newSection,formValidator,handleEditButtonClick,handleAddButtonClick} from '../utils/constants.js'
+newSection(initialCards);
 document.querySelectorAll('.popup__form').forEach(form => formValidator(form));
-document.querySelector('.profile__edit-button').addEventListener('click', handleEditButtonClick);
-document.querySelector('.profile__add-button').addEventListener('click', handleAddButtonClick);
+document.querySelector('.profile__edit-button').addEventListener('click', () => handleEditButtonClick.open());
+document.querySelector('.profile__add-button').addEventListener('click', () => handleAddButtonClick.open());

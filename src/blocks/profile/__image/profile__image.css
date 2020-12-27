@@ -1,14 +1,13 @@
 .profile__image {
-    width: 120px;
-    border-radius: 50%;
+    width: 100%;
     object-fit: cover;
     object-position: center;
-    margin-right: 30px;
+    transition: .5s;
 }
 
-@media only screen and (max-width: 770px) {
+/* @media only screen and (max-width: 770px) {
     .profile__image {
         margin: 0;
         margin-bottom: 14px;
     }
-}
+} */

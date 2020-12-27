@@ -1,11 +1,10 @@
 import Popup from './Popup.js'
 
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, {info,submit}) {
+    constructor(popupSelector, {submit}) {
         super(popupSelector);
         this._input = this._popup.querySelector('.popup__field');
         this._inputs = this._popup.querySelectorAll('.popup__field');
-        this._info = info;
         this._submitForm = submit;
         this._submitButton = this._popup.querySelector('.popup__submit');
         this.setEventListeners();
@@ -17,7 +16,7 @@ export default class PopupWithForm extends Popup {
     
     _handleSubmit = (e) => {
         e.preventDefault();
-        this._submitForm(this._getInputValues());
+        this._submitForm({value: this._getInputValues(), info: this._info});
         this.close();
         this._popup.querySelector('.popup__form').reset();
     }
@@ -27,11 +26,12 @@ export default class PopupWithForm extends Popup {
         this._popup.addEventListener('submit', this._handleSubmit);
     }
 
-    open() {
+    open(info) {
         super.open();
-        this._input.focus();
+        this._info = info;
+        this._input?.focus();
         this._inputs.forEach((input,i) => (input.value = this._info?.getUserInfo()[i] || ''));
-        this._submitButton.classList.add('inactive');
-        this._submitButton.disabled = true;
+        !this._submitButton.classList.contains('active') && this._submitButton.classList.add('inactive');
+        !this._submitButton.classList.contains('active') && (this._submitButton.disabled = true);
     }
 }

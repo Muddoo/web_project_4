@@ -1,30 +1,31 @@
 export default class Card {
-    constructor({item, handleCardClick}, template) {
-        this._template = document.querySelector(template).content;
+    constructor({item, handleClick}, template) {
+        this._template = document.querySelector(template).content.cloneNode(true);
         this._item = item;
-        this._imagePopup = handleCardClick;
+        this._imagePopup = handleClick.handleCardClick;
+        this._deletePopup = handleClick.handleDeleteClick
     }
   
     _getTemplate() {
-      this._cardElement = this._template.cloneNode(true);
+      this._cardElement = this._template.querySelector('.card');
       this._cardImage  = this._cardElement.querySelector('.card__image');
       this._cardText   = this._cardElement.querySelector('.card__text');
       this._cardLike   = this._cardElement.querySelector('.card__icon-heart');
       this._cardDelete = this._cardElement.querySelector('.card__icon-delete');
     }
   
-    _handleLike(e) {
-      e.target.classList.toggle('card__icon-heart_black');
+    _handleLike() {
+      this._cardLike.classList.toggle('card__icon-heart_black');
     }
   
-    _handleDelete(e) {
-      e.target.closest('.card').remove();
+    _handleDelete() {
+      this._cardElement.remove()
     }
   
     _setEventListeners() {
       this._cardImage.addEventListener('click', () => this._imagePopup(this._item));
-      this._cardLike.addEventListener('click', this._handleLike);
-      this._cardDelete.addEventListener('click', this._handleDelete);
+      this._cardLike.addEventListener('click', this._handleLike.bind(this));
+      this._cardDelete.addEventListener('click', () => this._deletePopup(this._cardElement));
     }
   
     generateCard() {

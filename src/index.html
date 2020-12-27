@@ -11,7 +11,9 @@
     </header>
     <main>
         <section class="profile">
-            <img draggable="false" src="./images/image.jpg" alt="profile image" class="profile__image">
+            <div class="profile__wrapper">
+                <img draggable="false" src="./images/image.jpg" alt="profile image" class="profile__image">
+            </div>
             <div class="profile__info">
                 <h1 class="profile__name">Jacques Cousteau</h1>
                 <p class="profile__text">Explorer</p>
@@ -25,7 +27,16 @@
     <footer class="footer">
         <p class="footer__text"> © 2020 Around The U.S.</p>
     </footer>
-    <div class="popup popup_profile" hidden>
+    <div class="popup popup_profile-photo" hidden>
+        <form action="#" class="popup__form" name="profileform" novalidate>
+            <button class="popup__close" aria-label="close-button" type="button"></button>
+            <h3 class="popup__header">Change profile picture</h3>
+            <input type="url" class="popup__field" placeholder="Image link" name="profile-image" id="profile-image" autocomplete="off" spellcheck="false" required>
+            <span class="popup__error"></span>
+            <button type="submit" class="popup__submit" id="submit" aria-label="save-button" >Save</button>
+        </form>
+    </div>
+    <div class="popup popup_profile-info" hidden>
         <form action="#" class="popup__form" name="profileform" novalidate>
             <button class="popup__close" aria-label="close-button" type="button"></button>
             <h3 class="popup__header">Edit profile</h3>
@@ -44,7 +55,14 @@
             <span class="popup__error"></span>
             <input type="url" class="popup__field" placeholder="Image link" name="image" id="image" autocomplete="off" spellcheck="false" required>
             <span class="popup__error"></span>
-            <button type="submit" class="popup__submit inactive" id="create" aria-label="create-button">Create</button>
+            <button type="submit" class="popup__submit" id="create" aria-label="create-button">Create</button>
+        </form>
+    </div>
+    <div class="popup popup_delete" hidden>
+        <form action="#" class="popup__form" name="cardform" novalidate>
+            <button class="popup__close" aria-label="close-button" type="button"></button>
+            <h3 class="popup__header popup__header_delete">Are you sure?</h3>
+            <button type="submit" class="popup__submit active" id="yes" aria-label="create-button">Yes</button>
         </form>
     </div>
     <figure class="popup popup_figure" hidden>

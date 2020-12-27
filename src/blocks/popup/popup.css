@@ -9,6 +9,7 @@
 @import url('./__close/_fig/popup__close_fig.css');
 @import url('./__field/_border_red/popup__field_border_red.css');
 @import url('./__error/popup__error.css');
+@import url('./__header/_delete/popup__header_delete.css');
 
 .popup {
     position: fixed;

@@ -24,3 +24,4 @@ export const initialCards = [
       link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
 ];
+//"https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg"

@@ -1,4 +1,4 @@
 .editorconfig
 node_modules 
 dist
-src/utils/auth.js
+src/utils

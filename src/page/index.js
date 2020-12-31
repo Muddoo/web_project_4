@@ -20,8 +20,6 @@ const api = (method = 'GET', body = null) => new Api({
   }
 });
 const userInfo = new UserInfo(['.profile__name','.profile__text','.profile__image']);
-// api().getUser().then(user => userInfo.setUserInfo(user));
-// api().queryCards().then(cards => newSection(cards.reverse()));
 
 const imagePopupObject = new PopupWithImage('.popup_figure');
 const deletePopupObj = new PopupWithForm('.popup_delete',{
@@ -89,6 +87,3 @@ async function initialCards() {
   newSection(cards.reverse());
 }
 initialCards();
-// api().queryCards().then(cards => newSection(cards.reverse()));
-
-//"https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg"

@@ -17,9 +17,6 @@ export default class Card {
       this._cardDelete = this._cardElement.querySelector('.card__icon-delete');
       this._item.owner._id !== this._userId && (this._cardDelete.hidden = true);
       this._item.likes.some(({_id}) => _id === this._userId) && this._cardLike.classList.add('card__icon-heart_black','animate');
-      // console.log(this._item.likes.some(({_id}) => console.log(_id , this._userId)));
-      // console.log(this._item.likes.some(({_id}) => _id === this._userId));
-      // console.log(this._item)
       this._cardElement.querySelector('.card__likes').textContent = this._item.likes.length;
     }
   

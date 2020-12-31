@@ -3,11 +3,5 @@
     object-fit: cover;
     object-position: center;
     transition: .5s;
+    filter: brightness(1.4);
 }
-
-/* @media only screen and (max-width: 770px) {
-    .profile__image {
-        margin: 0;
-        margin-bottom: 14px;
-    }
-} */

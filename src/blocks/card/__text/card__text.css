@@ -6,4 +6,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    grid-row: span 2;
+    justify-self: stretch;
 }

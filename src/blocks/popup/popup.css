@@ -23,6 +23,6 @@
     background-color: rgba(0,0,0,.5);
     backdrop-filter: blur(2px);
     opacity: 0;
-    transition: opacity .4s ease-in;
+    transition: opacity .3s ease-in;
     pointer-events: none;
 }

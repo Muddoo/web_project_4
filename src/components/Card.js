@@ -1,31 +1,32 @@
 export default class Card {
-    constructor({item, handleClick}, template) {
+    constructor({item, handleClick, userInfo}, template) {
         this._template = document.querySelector(template).content.cloneNode(true);
+        this._userId = userInfo.getUserId();
         this._item = item;
-        this._imagePopup = handleClick.handleCardClick;
-        this._deletePopup = handleClick.handleDeleteClick
+        this._showImage = handleClick.handleCardClick;
+        this._deleteCard = handleClick.handleDeleteClick;
+        this._likeCard = handleClick.handleLikeClick;
     }
   
     _getTemplate() {
       this._cardElement = this._template.querySelector('.card');
+      this._cardElement.dataset.id = this._item._id;
       this._cardImage  = this._cardElement.querySelector('.card__image');
       this._cardText   = this._cardElement.querySelector('.card__text');
       this._cardLike   = this._cardElement.querySelector('.card__icon-heart');
       this._cardDelete = this._cardElement.querySelector('.card__icon-delete');
-    }
-  
-    _handleLike() {
-      this._cardLike.classList.toggle('card__icon-heart_black');
-    }
-  
-    _handleDelete() {
-      this._cardElement.remove()
+      this._item.owner._id !== this._userId && (this._cardDelete.hidden = true);
+      this._item.likes.some(({_id}) => _id === this._userId) && this._cardLike.classList.add('card__icon-heart_black','animate');
+      // console.log(this._item.likes.some(({_id}) => console.log(_id , this._userId)));
+      // console.log(this._item.likes.some(({_id}) => _id === this._userId));
+      // console.log(this._item)
+      this._cardElement.querySelector('.card__likes').textContent = this._item.likes.length;
     }
   
     _setEventListeners() {
-      this._cardImage.addEventListener('click', () => this._imagePopup(this._item));
-      this._cardLike.addEventListener('click', this._handleLike.bind(this));
-      this._cardDelete.addEventListener('click', () => this._deletePopup(this._cardElement));
+      this._cardImage.addEventListener('click', () => this._showImage(this._item));
+      this._cardDelete.addEventListener('click', () => this._deleteCard(this._cardElement));
+      this._cardLike.addEventListener('click', () => this._likeCard(this._cardElement));
     }
   
     generateCard() {

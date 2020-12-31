@@ -14,3 +14,5 @@
 @import url('../blocks/inactive/inactive.css');
 @import url('../blocks/popup/_figure/popup_figure.css');
 @import url('../blocks/visible/visible.css');
+@import url('../blocks/hidden/hidden.css');
+@import url('../blocks/animate/animate.css');

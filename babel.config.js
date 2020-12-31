@@ -11,12 +11,12 @@ module.exports = {
   
       // use polyfills for the browsers specified in the above targets option
       // Babel uses polyfills from the core-js library
-      useBuiltIns: "entry"
+      useBuiltIns: "usage"
     }]
   ],
   plugins: [
     '@babel/plugin-syntax-class-properties',
     "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
   ],
 }

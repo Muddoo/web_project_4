@@ -11,7 +11,7 @@ import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 
 //token
-import {token} from '../utils/auth.js'
+const token = process.env.TOKEN
 
 //basic api function
 const api = (method = 'GET', body = null) => new Api({

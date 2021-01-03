@@ -14,15 +14,13 @@ import Api from '../components/Api.js'
 const token = process.env.TOKEN
 
 //basic api function
-const api = (method = 'GET', body = null) => new Api({
+const api = new Api({
   baseUrl:'https://around.nomoreparties.co/v1/group-7',
   options: {
-    method,
     headers: {
       authorization: token,
       "Content-Type": "application/json",
-    },
-    body: body && JSON.stringify(body),
+    }
   }
 });
 
@@ -33,9 +31,15 @@ const userInfo = new UserInfo(['.profile__name','.profile__text','.profile__imag
 const imagePopupObject = new PopupWithImage('.popup_figure');
 const deletePopupObj = new PopupWithForm('.popup_delete',{
   submit: ({info}) => {
-    api('DELETE').queryCards(info.dataset.id);
-    info.remove();
-    deletePopupObj.close();
+    const options = {
+      query: info.dataset.id,
+      method: 'DELETE'
+    };
+    api.queryCards(options)
+       .then(() => {
+        info.remove();
+        deletePopupObj.close();
+       });
  }
 });
 const handleCardClick = image => imagePopupObject.open(image);
@@ -43,7 +47,11 @@ const handleDeleteClick = card => deletePopupObj.open(card);
 const handleLikeClick = (card) => {
   const heartIcon = card.querySelector('.card__icon-heart');
   const method = heartIcon.classList.contains('card__icon-heart_black') ? 'DELETE' : 'PUT';
-  api(method).queryCards(`likes/${card.dataset.id}`)
+  const options = {
+    query: `likes/${card.dataset.id}`,
+    method
+  };
+  api.queryCards(options)
     .then(({likes}) => {
       heartIcon.classList.toggle('card__icon-heart_black');
       heartIcon.classList.toggle('animate');
@@ -51,7 +59,7 @@ const handleLikeClick = (card) => {
   });
 }
 const renderer = item => new Card({item,handleClick: {handleCardClick,handleDeleteClick,handleLikeClick}, userInfo},'.template-card').generateCard();
-const newSection = (items) => new Section({items, renderer}, '.cards').add();
+let newSection;
 
 // enable validation for forms
 const formValidator = form => new FormValidator({
@@ -66,14 +74,19 @@ document.querySelectorAll('.popup__form').forEach(form => formValidator(form));
 
 // handling profile change
 function profilePhotoSubmit({value: [avatar]}) {
-  api('PATCH',{avatar}).updateProfile('avatar').then(user => {
+  const options = {
+    avatar: 'avatar',
+    body: {avatar}
+  }
+  api.updateProfile(options).then(user => {
   userInfo.setUserInfo(user);
   this.close();
   this.reset();
  })
 }
 function profileFormSubmit({value: [name,about]}) {
-  api('PATCH',{name,about}).updateProfile().then(user => {
+  const options = {body: {name,about}};
+  api.updateProfile(options).then(user => {
   userInfo.setUserInfo(user);
   this.close();
   this.reset();
@@ -86,8 +99,12 @@ document.querySelector('.profile__edit-button').addEventListener('click', () => 
 
 // handle adding new card
 function cardFormSubmit({value: [name,link]}) {
-  api('POST',{name,link}).queryCards().then(card => {
-  newSection([card]);
+  const options = {
+    method: 'POST',
+    body: {name,link}
+  };
+  api.queryCards(options).then(card => {
+  newSection.add(card);
   this.close();
   this.reset();
  })
@@ -97,8 +114,9 @@ document.querySelector('.profile__add-button').addEventListener('click', () => h
 
 // rendering cards from server
 async function initialCards() {
-  const [user,cards] = await Promise.all([api().getUser(),api().queryCards()]);
+  const [user,items] = await Promise.all([api.getUser(),api.queryCards({})]);
   userInfo.setUserInfo(user);
-  newSection(cards.reverse());
+  newSection = new Section({items, renderer}, '.cards');
+  newSection.addAll();
 }
 initialCards();

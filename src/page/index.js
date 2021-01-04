@@ -30,16 +30,18 @@ const userInfo = new UserInfo(['.profile__name','.profile__text','.profile__imag
 //Section and Card class
 const imagePopupObject = new PopupWithImage('.popup_figure');
 const deletePopupObj = new PopupWithForm('.popup_delete',{
-  submit: ({info}) => {
-    const options = {
-      query: info.dataset.id,
-      method: 'DELETE'
-    };
-    api.queryCards(options)
-       .then(() => {
+  submit: async ({info}) => {
+    try {
+        const options = {
+          query: info.dataset.id,
+          method: 'DELETE'
+        };
+        await api.queryCards(options);
         info.remove();
         deletePopupObj.close();
-       });
+    } catch (error) {
+        console.log(error)
+    }
  }
 });
 const handleCardClick = image => imagePopupObject.open(image);
@@ -56,7 +58,7 @@ const handleLikeClick = (card) => {
       heartIcon.classList.toggle('card__icon-heart_black');
       heartIcon.classList.toggle('animate');
       card.querySelector('.card__likes').textContent = likes.length;
-  });
+  }).catch(err => console.log(err));
 }
 const renderer = item => new Card({item,handleClick: {handleCardClick,handleDeleteClick,handleLikeClick}, userInfo},'.template-card').generateCard();
 let newSection;
@@ -82,7 +84,7 @@ function profilePhotoSubmit({value: [avatar]}) {
   userInfo.setUserInfo(user);
   this.close();
   this.reset();
- })
+ }).catch(err => console.log(err));
 }
 function profileFormSubmit({value: [name,about]}) {
   const options = {body: {name,about}};
@@ -90,7 +92,7 @@ function profileFormSubmit({value: [name,about]}) {
   userInfo.setUserInfo(user);
   this.close();
   this.reset();
- })
+ }).catch(err => console.log(err));
 }
 const handleProfilePhotoClick = new PopupWithForm('.popup_profile-photo',{ submit: profilePhotoSubmit });
 const handleEditButtonClick = new PopupWithForm('.popup_profile-info',{ submit: profileFormSubmit });
@@ -107,16 +109,20 @@ function cardFormSubmit({value: [name,link]}) {
   newSection.add(card);
   this.close();
   this.reset();
- })
+ }).catch(err => console.log(err));
 }
 const handleAddButtonClick = new PopupWithForm('.popup_card', { submit: cardFormSubmit });
 document.querySelector('.profile__add-button').addEventListener('click', () => handleAddButtonClick.open());
 
 // rendering cards from server
 async function initialCards() {
-  const [user,items] = await Promise.all([api.getUser(),api.queryCards({})]);
-  userInfo.setUserInfo(user);
-  newSection = new Section({items, renderer}, '.cards');
-  newSection.addAll();
+  try {
+      const [user,items] = await Promise.all([api.getUser(),api.queryCards({})]);
+      userInfo.setUserInfo(user);
+      newSection = new Section({items, renderer}, '.cards');
+      newSection.addAll();
+  } catch (error) {
+      console.log(error)
+  }
 }
 initialCards();

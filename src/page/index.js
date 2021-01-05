@@ -48,17 +48,27 @@ const handleCardClick = image => imagePopupObject.open(image);
 const handleDeleteClick = card => deletePopupObj.open(card);
 const handleLikeClick = (card) => {
   const heartIcon = card.querySelector('.card__icon-heart');
+  const heartText = card.querySelector('.card__likes');
   const method = heartIcon.classList.contains('card__icon-heart_black') ? 'DELETE' : 'PUT';
   const options = {
     query: `likes/${card.dataset.id}`,
     method
   };
+  heartIcon.classList.toggle('card__icon-heart_black');
+  heartIcon.classList.toggle('animate');
+  heartText.textContent = method === 'PUT' ? +heartText.textContent + 1 : +heartText.textContent - 1;
   api.queryCards(options)
-    .then(({likes}) => {
+    // .then(({likes}) => {
+    //   heartIcon.classList.toggle('card__icon-heart_black');
+    //   heartIcon.classList.toggle('animate');
+    //   card.querySelector('.card__likes').textContent = likes.length
+    // })
+    .catch(err => {
+      console.log(err);
       heartIcon.classList.toggle('card__icon-heart_black');
       heartIcon.classList.toggle('animate');
-      card.querySelector('.card__likes').textContent = likes.length;
-  }).catch(err => console.log(err));
+      heartText.textContent = method === 'PUT' ? +heartText.textContent - 1 : +heartText.textContent + 1;
+    });
 }
 const renderer = item => new Card({item,handleClick: {handleCardClick,handleDeleteClick,handleLikeClick}, userInfo},'.template-card').generateCard();
 let newSection;

@@ -4,8 +4,10 @@
   "description": "### Overview * Intro * Figma * Images",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack serve --open chrome --port 3000",
     "build": "rm -rf dist && set NODE_ENV=production&&webpack",
-    "dev": "webpack serve --open chrome --port 3000"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "cssnano": "^4.1.10",
     "dotenv-webpack": "^6.0.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
     "mini-css-extract-plugin": "^1.3.3",

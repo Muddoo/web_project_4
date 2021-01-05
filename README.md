@@ -27,7 +27,7 @@ Creating modern webpage using html & css & js that fit all screen sizes desktop 
                  
 ## Installation
 
-TextEditor Like Vscode.
+git clone the repo .. 
                 
 ## Usage
 
@@ -35,7 +35,7 @@ designed for user interface.
 
 ## Credits
  
-animation, transform, BEM, flex, grid, hover, eventlisteners etc 
+animation, transform, BEM, flex, grid, hover, eventlisteners, classes, api, webpack etc 
 
 ## License
 

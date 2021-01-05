@@ -22,6 +22,6 @@
     place-items: center;
     background-color: rgba(0,0,0,.5);
     opacity: 0;
-    transition: opacity 0.23s ease-in;
+    transition: opacity 0.21s ease-in;
     pointer-events: none;
 }

@@ -1,6 +1,6 @@
 .visible {
     opacity: 1;
     pointer-events: all;
-    backdrop-filter: blur(1.5px) grayscale(100%);
+    backdrop-filter: blur(1.5px) grayscale(100%) contrast(2.5);
     transition: opacity 0.18s ease-in;
 }

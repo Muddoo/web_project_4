@@ -21,8 +21,8 @@
     display: grid;
     place-items: center;
     background-color: rgba(0,0,0,.5);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     opacity: 0;
-    transition: opacity .3s ease-in;
+    transition: all 0.1s linear;
     pointer-events: none;
 }

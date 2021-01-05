@@ -1,5 +1,5 @@
 .visible {
     opacity: 1;
     pointer-events: all;
-    transition: opacity .4s ease-in;
+    transition: all .03s linear;
 }

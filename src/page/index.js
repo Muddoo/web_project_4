@@ -32,11 +32,11 @@ const imagePopupObject = new PopupWithImage('.popup_figure');
 const deletePopupObj = new PopupWithForm('.popup_delete',{
   submit: async ({info}) => {
     try {
-        const options = {
-          query: info.dataset.id,
-          method: 'DELETE'
-        };
-        await api.queryCards(options);
+        // const options = {
+        //   query: info.dataset.id,
+        //   method: 'DELETE'
+        // };
+        // await api.queryCards(options);
         info.remove();
         deletePopupObj.close();
     } catch (error) {

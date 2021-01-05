@@ -1,5 +1,5 @@
 .visible {
     opacity: 1;
     pointer-events: all;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1.5px) grayscale(100%);
 }

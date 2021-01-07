@@ -23,21 +23,21 @@
 .footer__text{margin:0}
 .footer{margin:66px auto 60px;max-width:882px;min-height:18px;color:var(--dark-grey);font-weight:400;font-size:18px;line-height:22px}@media only screen and (max-width:770px){.footer{margin:48px auto 36px;max-width:282px;min-height:14px;font-size:14px;line-height:17px}}
 .popup__field{display:block;width:358px;margin:13px auto 0;border:none;border-bottom:1px solid rgba(71,46,46,.2);outline:none;font-size:14px;line-height:17px;color:#000;box-sizing:border-box;padding-top:0;padding-bottom:9.68px}.popup__field:first-of-type{margin-top:0;padding-bottom:9.6px}@media only screen and (max-width:570px){.popup__field{width:238px}.popup__field,.popup__field:first-of-type{padding-bottom:9.34px}}
-.popup__form{position:relative;width:430px;background-color:var(--white);border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box}@media only screen and (max-width:570px){.popup__form{width:282px}}
+.popup__form{position:relative;width:430px;background-color:var(--white);border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;opacity:var(--opacity);transition:all .2s linear .2s}@media only screen and (max-width:570px){.popup__form{width:282px}}
 .popup__submit{display:block;width:358px;height:50.15px;text-align:center;padding:0;margin:30px auto 36.51px;color:var(--white);background-color:var(--dark);border-radius:2px;cursor:pointer;font-size:18px;line-height:22px;box-sizing:border-box}.popup__submit:hover{background-color:rgba(0,0,0,.8)}@media only screen and (max-width:570px){.popup__submit{width:238px;height:46px;margin:25px auto;font-size:14px;line-height:17px}}
 .popup__header{width:330px;font-weight:900;font-size:24px;line-height:29px;margin:0;padding:34px 0 70px 36px}@media only screen and (max-width:570px){.popup__header{width:238px;font-size:18px;line-height:22px;margin:0 auto;padding:25px 0 75px}}
 .popup__close{position:absolute;width:50px;height:50px;top:-40.7px;right:-40.7px;background-image:url(images/close-icon.svg);background-position:50%;background-repeat:no-repeat;background-color:transparent;border:0;padding:0;outline:0;cursor:pointer;transition:all .2s}.popup__close:hover{opacity:.6}@media only screen and (max-width:570px){.popup__close{width:26px;height:26px;right:0;top:-39.62px}}
-.popup__container{position:relative;top:25px}@media only screen and (max-width:570px){.popup__container{top:5px}}
+.popup__container{position:relative;top:25px;opacity:var(--opacity);transition:all .1s linear .1s}@media only screen and (max-width:570px){.popup__container{top:5px}}
 .popup__image{max-width:75vw;max-height:75vh;min-height:60vh;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center}
 .popup__caption{margin-top:10px;font-weight:400;font-size:12px;line-height:15px;color:var(--white)}
 .popup__close_fig{width:40px;height:40px;top:-40px;right:-40px}@media only screen and (max-width:770px){.popup__close_fig{width:25px;height:25px;top:-40px;right:0}}
 .popup__field_border_red{border-bottom:1px solid rgba(255 0 0/1)}
 .popup__error{display:block;max-width:358px;min-height:15px;word-wrap:break-word;margin:5px auto 0;font-size:12px;line-height:15px;color:red}@media only screen and (max-width:570px){.popup__error{max-width:238px}}
 .popup__header_delete{padding-bottom:0}
-.popup{position:fixed;top:0;left:0;width:100%;height:100vh;margin:0;display:grid;place-items:center;background-color:rgba(0,0,0,.5);opacity:0;transition:opacity .23s ease-in;pointer-events:none}
+.popup{--opacity:0;position:fixed;top:0;left:0;width:100%;height:100vh;margin:0;display:grid;place-items:center;background-color:var(--color);opacity:var(--opacity);transition:opacity .23s ease-in;pointer-events:none}
 .inactive{pointer-events:none;cursor:none;background-color:var(--white);color:var(--dark);opacity:.2}
 .popup_figure{background-color:rgba(0,0,0,.9)}
-.visible{opacity:1;pointer-events:all;-webkit-backdrop-filter:blur(1.5px) grayscale(100%) contrast(2.5);backdrop-filter:blur(1.5px) grayscale(100%) contrast(2.5);transition:opacity .18s ease-in}
+.visible{--opacity:1;pointer-events:all;-webkit-backdrop-filter:blur(1.5px) grayscale(100%) contrast(1.2);backdrop-filter:blur(1.5px) grayscale(100%) contrast(1.2);transition:opacity 0s ease-in}
 .hidden{visibility:hidden;opacity:0}
 .animate{-webkit-animation:animate .7s ease-in-out;animation:animate .7s ease-in-out}@-webkit-keyframes animate{0%{transform:scale(0)}60%{transform:scale(1.6)}to{transform:scale(1)}}@keyframes animate{0%{transform:scale(0)}60%{transform:scale(1.6)}to{transform:scale(1)}}
 

@@ -1,6 +1,8 @@
 .popup__container {
     position: relative;
     top: 25px;
+    opacity: var(--opacity);
+    transition: all 0.1s linear 0.1s;
 }
 
 @media only screen and (max-width: 570px) {

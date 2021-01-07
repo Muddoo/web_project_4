@@ -12,6 +12,7 @@
 @import url('./__header/_delete/popup__header_delete.css');
 
 .popup {
+    --opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,8 +21,8 @@
     margin: 0;
     display: grid;
     place-items: center;
-    background-color: rgba(0,0,0,.5);
-    opacity: 0;
+    background-color: var(--color);
+    opacity: var(--opacity);
     transition: opacity 0.23s ease-in;
     pointer-events: none;
 }

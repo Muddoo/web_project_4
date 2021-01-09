@@ -7,7 +7,7 @@
     box-sizing: border-box;
     opacity: var(--opacity);
     transform: var(--scale);
-    transition: opacity 0s 0.1s,transform .1s .1s;
+    transition: opacity 0s,transform .1s;
 }
 
 @media only screen and (max-width: 570px) {

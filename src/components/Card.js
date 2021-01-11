@@ -30,7 +30,7 @@ export default class Card {
       this._getTemplate();
       this._setEventListeners();
       this._cardImage.src = this._item.link;
-      this._cardImage.alt = this._item.link;
+      this._cardImage.alt = this._item.name;
       this._cardText.textContent = this._item.name;
       return this._cardElement;
     }

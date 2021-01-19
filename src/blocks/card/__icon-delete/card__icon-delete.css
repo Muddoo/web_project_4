@@ -1,7 +1,7 @@
 .card__icon-delete {
     position: absolute;
-    width: 18px;
-    height: 19.3px;
+    width: 50px;
+    height: 40px;
     top: 18px;
     right: 15px;
     cursor: pointer;
@@ -10,7 +10,7 @@
     background-color: transparent;
     background-image: url('../../../images/delete-icon.svg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top right;
     border: none;
     padding: 0;
     outline: none;

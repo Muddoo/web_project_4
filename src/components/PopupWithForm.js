@@ -33,6 +33,10 @@ export default class PopupWithForm extends Popup {
 
     close() {
         super.close();
+        this._inputs.forEach(input => {
+            input.classList.remove('popup__field_border_red');
+            input.nextElementSibling.textContent = '';
+        });
     }
 
     reset() {
